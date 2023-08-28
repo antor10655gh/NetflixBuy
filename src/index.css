@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.heroBg{
+    @apply bg-[url('./assets/images/hero-bg.jpg')] bg-no-repeat bg-center bg-cover;
+  }
+
+.trendingHeroBg{
+    @apply bg-[url('./assets/images/trending-hero.png')] bg-no-repeat bg-center bg-cover;
+  }

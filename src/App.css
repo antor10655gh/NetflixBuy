@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600;800&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Best seller components */
+
+.card {
+    position: relative;
+    height: 400px;
+    width: 230px;
+    margin: 0 auto;
+  }
+  
+  .card .boxshadow {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: 1px solid red;
+    transform: scale(0.8);
+    box-shadow: rgb(255, 0, 0) 0px 30px 70px 0px;
+    transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+  
+  .card .main {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: red;
+    background: linear-gradient(0deg, rgb(62, 0, 0) 0%, rgb(255, 0, 0) 60%, rgb(62, 0, 0) 100%);
+    position: relative;
+    -webkit-clip-path: polygon(0 40px, 40px 0, calc(100% - 40px) 0, 100% 40px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 40px 100%, 0 calc(100% - 40px));
+    clip-path: polygon(0 40px, 40px 0, calc(100% - 40px) 0, 100% 40px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 40px 100%, 0 calc(100% - 40px));
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 40px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 40px 100%, 0 calc(100% - 40px));
+    clip-path: polygon(0 0, 100% 0, 100% 40px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 40px 100%, 0 calc(100% - 40px));
+    box-shadow: rgb(255, 0, 0) 0px 7px 29px 0px;
+    transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+  
+  .card .main .top {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 0px;
+    height: 0px;
+    z-index: 2;
+    border-top: 115px solid black;
+    border-left: 115px solid transparent;
+    border-right: 115px solid transparent;
+    transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+  
+  .card .main .side {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    transform: translateX(-50%);
+    height: 101%;
+    background: black;
+    -webkit-clip-path: polygon(0% 0%, 50% 0, 95% 45%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 50% 0, 95% 45%, 100% 100%, 0% 100%);
+    transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s;
+  }
+  
+  .card .main .left {
+    left: 0;
+  }
+  
+  .card .main .right {
+    right: 0;
+    transform: translateX(50%) scale(-1, 1);
+  }
+  
+  .card .main .title {
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    padding: 0 5px;
+    transform: translateX(-50%);
+    top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    opacity: 0;
+    z-index: -1;
+    color: white;
+    transition: all 0.2s ease-out 0s;
+  }
+
+  .card .main .price {
+    position: absolute;
+    display: flex;
+    gap: 15px;
+    left: 50%;
+    width: 100%;
+    padding: 0 5px;
+    transform: translateX(-50%);
+    top: -50px;
+    font-size: 16px;
+    opacity: 1;
+    z-index: -1;
+    color: white;
+    transition: all 0.2s ease-out 0s;
+  }
+  .card .main .category {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    padding: 0 5px;
+    transform: translateX(-50%);
+    top: -50px;
+    font-size: 14px;
+    opacity: 1;
+    z-index: -1;
+    color: white;
+    transition: all 0.2s ease-out 0s;
+  }
+  
+  .card .main .button-container {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .card .main .button-container .button {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 100px;
+    padding: 10px;
+    background: black;
+    border: none;
+    color: white;
+    transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+  
+  .card .main .button-container .button .svg {
+    width: 100px;
+    transition: all 0.2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+  
+  .card .main .button-container .button:nth-child(1) {
+    bottom: 300px;
+    transition-delay: 0.4s;
+  }
+  
+  .card .main .button-container .button:nth-child(2) {
+    bottom: 300px;
+    transition-delay: 0.6s;
+  }
+  
+  .card .main .button-container .button:nth-child(3) {
+    bottom: 300px;
+    transition-delay: 0.8s;
+  }
+  
+  .card .main .button-container .button:hover .svg {
+    transform: scale(1.2);
+  }
+  
+  .card .main .button-container .button:active .svg {
+    transform: scale(0.7);
+  }
+  
+  .card:hover .main {
+    transform: scale(1.1);
+  }
+  
+  .card:hover .main .top {
+    top: -150px;
+  }
+  
+  .card:hover .main .left {
+    left: -85px;
+    transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.1s;
+  }
+  
+  .card:hover .main .right {
+    right: -85px;
+    transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.1s;
+  }
+  
+  .card:hover .main .title {
+    opacity: 1;
+    transition: all 0.2s ease-out 1.4s;
+  }
+
+  .card:hover .main .category {
+    top: 80px;
+    transition: all 0.2s ease-out 1.2s;
+  }
+
+  .card:hover .main .price {
+    top: 120px;
+    transition: all 0.2s ease-out 1s;
+  }
+  
+  .card:hover .main .button-container .button:nth-child(1) {
+    bottom: 5px;
+    transition-delay: 0.4s;
+  }
+  
+  .card:hover .main .button-container .button:nth-child(2) {
+    bottom: 40px;
+    transition-delay: 0.6s;
+  }
+  
+  .card:hover .main .button-container .button:nth-child(3) {
+    bottom: 0;
+    transition-delay: 0.4s;
+  }
