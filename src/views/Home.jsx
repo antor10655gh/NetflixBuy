@@ -4,6 +4,7 @@ import TrendingHero from "../components/trendinghero/TrendingHero";
 import BestSeller from "../components/category/bestseller/BestSeller";
 import SummerPlay from "../components/category/summerplay/SummerPlay";
 import GiftCards from "../components/category/giftCards/GiftCards";
+import BestSofware from "../components/category/bestSoftware/BestSoftware";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <BestSeller />
       <SummerPlay />
       <GiftCards />
+      <BestSofware />
     </div>
   );
 };

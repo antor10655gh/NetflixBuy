@@ -72,14 +72,14 @@ const Header = () => {
   return (
     <>
       <Navbar className="sticky top-0 z-40 h-max max-w-full rounded-none py-2 px-0 lg:py-4 shadow-none bg-transparent border-0">
-        <div className="container mx-auto flex items-center justify-between text-blue-gray-900 py-4">
+        <div className="px-8 flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             <Link to="/">
-              <h1 className="text-lg text-[#DC2626]">NefflixBuy</h1>
+              <h1 className="text-xl text-[#DC2626]">NefflixBuy</h1>
             </Link>
           </Typography>
           <div className="hidden lg:block">{navList}</div>
