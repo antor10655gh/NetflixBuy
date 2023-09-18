@@ -2,12 +2,12 @@ import React from "react";
 import PrimBtn from "../../button/PrimBtn";
 import bgImg from "../../../assets/images/wilder.jpg";
 
-const BestSeller = () => {
+const GiftCards = () => {
   const divStyle = {
     backgroundImage: `url(${bgImg})`,
   };
 
-  const bestSellers = [
+  const giftCards = [
     {
       id: 1,
       img: "https://i.ibb.co/PYBwpdw/redeem-art-minecraft-285x380.jpg",
@@ -63,11 +63,15 @@ const BestSeller = () => {
       style={divStyle}
     >
       <div className="text-white text-center lg:text-start pb-12">
-        <h1 className="text-3xl py-2">Best Sellers</h1>
-        <p>Browse the most popular video games on the platform.</p>
+        <h1 className="text-3xl py-2">Giftcards</h1>
+        <p>
+          Make buying games on Steam easier, faster, and safer with Steam
+          giftcards. Top up your wallet and spend the currency on anything
+          available in the Steam store.
+        </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-20">
-        {bestSellers.map((bestSeller) => (
+        {giftCards.map((giftCard) => (
           <div className="card lg:w-[350px]">
             <div className="card-banner">
               <img
@@ -85,10 +89,10 @@ const BestSeller = () => {
               </span>
               <div className="py-3 flex gap-3">
                 <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
-                  {bestSeller.oldPrice}
+                  {giftCard.oldPrice}
                 </span>
                 <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
-                  {bestSeller.newPrice}
+                  {giftCard.newPrice}
                 </span>
               </div>
               <div className="flex justify-end">
@@ -102,4 +106,4 @@ const BestSeller = () => {
   );
 };
 
-export default BestSeller;
+export default GiftCards;
