@@ -1,62 +1,25 @@
 import React from "react";
-import PrimBtn from "../../button/PrimBtn";
 import bgImg from "../../../assets/images/wilder.jpg";
+import { Link } from "react-router-dom";
 
 const BestSofware = () => {
   const divStyle = {
     backgroundImage: `url(${bgImg})`,
   };
 
-  const bestSofwares = [
-    {
-      id: 1,
-      img: "https://i.ibb.co/PYBwpdw/redeem-art-minecraft-285x380.jpg",
-      title: "The Witcher 3: Wild Hunt",
-      category: "Gift Cards",
-      oldPrice: "$30",
-      newPrice: "$20",
-    },
-    {
-      id: 2,
-      img: "https://i.ibb.co/PYBwpdw/redeem-art-minecraft-285x380.jpg",
-      title: "The Witcher 3: Wild Hunt",
-      category: "Gaming Gift Cards",
-      oldPrice: "$30",
-      newPrice: "$20",
-    },
-    {
-      id: 3,
-      img: "https://i.ibb.co/PYBwpdw/redeem-art-minecraft-285x380.jpg",
-      title: "The Witcher 3: Wild Hunt",
-      category: "Best Softwares",
-      oldPrice: "$30",
-      newPrice: "$20",
-    },
-    {
-      id: 4,
-      img: "https://i.ibb.co/PYBwpdw/redeem-art-minecraft-285x380.jpg",
-      title: "The Witcher 3: Wild Hunt",
-      category: "Gaming Gift Cards",
-      oldPrice: "$30",
-      newPrice: "$20",
-    },
-    {
-      id: 5,
-      img: "https://i.ibb.co/PYBwpdw/redeem-art-minecraft-285x380.jpg",
-      title: "The Witcher 3: Wild Hunt",
-      category: "Subscriptions",
-      oldPrice: "$30",
-      newPrice: "$20",
-    },
-    {
-      id: 6,
-      img: "https://i.ibb.co/PYBwpdw/redeem-art-minecraft-285x380.jpg",
-      title: "The Witcher 3: Wild Hunt",
-      category: "Subscriptions",
-      oldPrice: "$30",
-      newPrice: "$20",
-    },
-  ];
+  const [bestSofwares, setBestSofwares] = React.useState([]);
+
+  const category = "BestSoftware";
+
+  React.useEffect(() => {
+    fetch(`http://localhost:8000/api/v1/product/category/${category}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setBestSofwares(data);
+      });
+  }, [category]);
+
   return (
     <div
       className="px-5 py-12 bg-no-repeat bg-cover bg-center"
@@ -74,7 +37,7 @@ const BestSofware = () => {
           <div className="card lg:w-[350px]">
             <div className="card-banner">
               <img
-                src="https://i.ibb.co/b54fN95/5cf4fbc146177c41784528f2-e1687732810754.webp"
+                src={`http://localhost:8000/${bestSofware.productImg}`}
                 alt=""
                 className="w-full h-full lg:w-[350px] rounded-tl-lg rounded-tr-lg rounded-b-none rounded-br-none"
               />
@@ -88,14 +51,16 @@ const BestSofware = () => {
               </span>
               <div className="py-3 flex gap-3">
                 <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
-                  {bestSofware.newPrice}
+                  {`${bestSofware.newPrice}$`}
                 </span>
                 <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
-                  {bestSofware.oldPrice}
+                  {`${bestSofware.oldPrice}$`}
                 </span>
               </div>
               <div className="flex justify-end">
-                <PrimBtn text={"Buy Now"} />
+                <Link to={`/product/${bestSofware._id}`}>
+                  <button className="prim_btn">Buy now</button>
+                </Link>
               </div>
             </div>
           </div>

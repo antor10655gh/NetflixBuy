@@ -30,3 +30,51 @@ body {
 .card:active {
   transform: scale(0.95) rotateZ(1.7deg);
 }
+
+/* Stye for button */
+.prim_btn {
+  --color: #dc2626;
+  font-family: inherit;
+  display: inline-block;
+  padding: 5px 25px;
+  overflow: hidden;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.prim_btn::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 250px;
+  height: 150px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.prim_btn:hover {
+  color: white;
+}
+
+.prim_btn:before {
+  top: 100%;
+  left: 100%;
+  transition: 0.3s all;
+}
+
+.prim_btn:hover::before {
+  top: -30px;
+  left: -30px;
+}
+
+@media screen and (max-width: 700px) {
+  .prim_btn {
+    font-size: 15px;
+    margin-top: 20px;
+  }
+}

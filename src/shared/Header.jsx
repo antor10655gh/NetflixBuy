@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import PrimBtn from "../components/button/PrimBtn";
 import {
   Navbar,
   MobileNav,
@@ -20,7 +19,7 @@ const Header = () => {
 
   const myMenu = [
     {
-      name: "Tending Products",
+      name: "Trending Products",
       link: "/trending_products",
     },
     {
@@ -60,7 +59,7 @@ const Header = () => {
         >
           <Link
             to={item.path}
-            className="flex items-center text-lg text-white hover:text-[#dc2626] focus:text-[#F7941F] transition duration-300 ease-in-out"
+            className="flex items-center text-lg text-[#A6ADBA] hover:text-[#dc2626] focus:text-[#F7941F] transition duration-300 ease-in-out"
           >
             {item.name}
           </Link>
@@ -84,7 +83,7 @@ const Header = () => {
           </Typography>
           <div className="hidden lg:block">{navList}</div>
           <div className="hidden lg:block">
-            <PrimBtn text={"Login"} />
+            <button className="prim_btn">Login</button>
           </div>
           <IconButton
             variant="text"
@@ -127,7 +126,7 @@ const Header = () => {
         <MobileNav open={openNav}>
           <div className="w-full container mx-auto">
             {navList}
-            <PrimBtn text={"Login"} />
+            <button className="prim_btn">Login</button>
           </div>
         </MobileNav>
       </Navbar>
