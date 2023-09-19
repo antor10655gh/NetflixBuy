@@ -3,11 +3,18 @@ import { Input } from "@material-tailwind/react";
 import bgImg from "../../assets/images/trending-hero.png";
 import { toast } from "react-toastify";
 import "./PaymentDetails.css";
+import { useNavigate } from "react-router-dom";
 
 const PaymentDetails = () => {
+  const navigate = useNavigate();
   const divStyle = {
     backgroundImage: `url(${bgImg})`,
   };
+  const [nameError, setNameError] = useState("");
+  const [cardError, setCardError] = useState("");
+  const [zipCodeError, setZipCodeError] = useState("");
+  const [expiryDateError, setExpiryDateError] = useState("");
+  const [cvvError, setCvvError] = useState("");
 
   const [formData, setFormData] = useState({
     holdername: "",
@@ -22,6 +29,111 @@ const PaymentDetails = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleName = (e) => {
+    const { name, value } = e.target;
+    const holderName = formData.holdername;
+
+    // Validate that the input contains only letters (no numbers)
+    const lettersOnlyRegex = /^[A-Za-z\s]+$/;
+    if (!lettersOnlyRegex.test(holderName)) {
+      setNameError("Please enter a valid name with only letters.");
+    } else {
+      setNameError("");
+    }
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleZipCode = (e) => {
+    const { name, value } = e.target;
+    const zipCode = formData.zipcode;
+
+    // Validate that the input contains only numeric characters
+    const numericRegex = /^[0-9]+$/;
+    if (!numericRegex.test(zipCode)) {
+      setZipCodeError("ZIP code must contain only numeric characters.");
+    } else {
+      setZipCodeError("");
+    }
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleCardNumber = (e) => {
+    const { name, value } = e.target;
+    const cardNumber = formData.cardnumber;
+
+    // // Check if the input is a valid card number
+    if (!/^\d+$/.test(cardNumber)) {
+      setCardError("Please enter a valid numeric card number.");
+    } else if (value.length < 16) {
+      setCardError("Card number must be at least 16 digits.");
+    } else {
+      setCardError("");
+    }
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleExpiryDate = (e) => {
+    const { name, value } = e.target;
+    const expiryDate = formData.expirydate;
+
+    // Validate input format (MM/YYYY)
+    const dateRegex = /^(0[1-9]|1[0-2])\/(20\d{2})$/;
+    if (!dateRegex.test(value)) {
+      setExpiryDateError("Please enter a valid date in MM/YYYY format.");
+    } else {
+      // Extract month and year
+      const [, enteredMonth, enteredYear] = value.match(dateRegex);
+
+      // Get the current year
+      const currentYear = new Date().getFullYear();
+
+      // Check if the entered year is less than the current year
+      if (parseInt(enteredYear, 10) < currentYear) {
+        setExpiryDateError(
+          "Year must be greater than or equal to the present year."
+        );
+      } else {
+        setExpiryDateError("");
+      }
+    }
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleCvv = (e) => {
+    const { name, value } = e.target;
+    const cvv = formData.cvv;
+
+    // Validate that the input contains exactly three digits and is numeric
+    const cvvRegex = /^\d{2}$/;
+    if (!cvvRegex.test(cvv)) {
+      setCvvError("CVV must be a three-digit numeric value.");
+    } else {
+      setCvvError("");
+    }
+
     setFormData({
       ...formData,
       [name]: value,
@@ -101,6 +213,7 @@ const PaymentDetails = () => {
           progress: undefined,
           theme: "light",
         });
+        navigate("/");
       });
 
     // Clear all input fields by resetting the formData state
@@ -118,7 +231,7 @@ const PaymentDetails = () => {
 
   return (
     <div className="bg-no-repeat bg-cover bg-center lg:py-20" style={divStyle}>
-      <div className="lg:w-[400px] mx-auto bg-[#1D232A] p-8 rounded-md">
+      <div className="lg:w-[400px] mx-auto bg-[#1D232A] p-8 rounded-lg">
         <form onSubmit={handleSubmit}>
           <div className="my-5">
             <p className="text-white pb-2">
@@ -131,7 +244,7 @@ const PaymentDetails = () => {
               <input
                 name="holdername"
                 value={formData.holdername}
-                onChange={handleChange}
+                onChange={handleName}
                 class="w-full peer h-full  rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
               />
@@ -139,6 +252,7 @@ const PaymentDetails = () => {
                 Card Holder Name
               </label>
             </div>
+            {nameError && <p className="text-red-500 text-sm">{nameError}</p>}
           </div>
           <div className="my-5">
             <p className="text-white pb-2">
@@ -189,7 +303,7 @@ const PaymentDetails = () => {
               <input
                 name="zipcode"
                 value={formData.zipcode}
-                onChange={handleChange}
+                onChange={handleZipCode}
                 class="w-full peer h-full lg:w-[105px]  rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
               />
@@ -198,6 +312,9 @@ const PaymentDetails = () => {
               </label>
             </div>
           </div>
+          {zipCodeError && (
+            <p className="text-red-500 text-sm w-full pt-2">{zipCodeError}</p>
+          )}
           <div className="my-5">
             <div className="flex justify-between items-center">
               <p className="text-white pb-2">
@@ -244,7 +361,7 @@ const PaymentDetails = () => {
               <input
                 name="cardnumber"
                 value={formData.cardnumber}
-                onChange={handleChange}
+                onChange={handleCardNumber}
                 class="w-full peer h-full  rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
               />
@@ -252,6 +369,7 @@ const PaymentDetails = () => {
                 Card
               </label>
             </div>
+            {cardError && <p className="text-red-500 text-sm">{cardError}</p>}
           </div>
           <div className="my-5">
             <p className="text-white pb-2">
@@ -264,7 +382,7 @@ const PaymentDetails = () => {
               <input
                 name="expirydate"
                 value={formData.expirydate}
-                onChange={handleChange}
+                onChange={handleExpiryDate}
                 class="w-full peer h-full   rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
               />
@@ -272,6 +390,9 @@ const PaymentDetails = () => {
                 Expiry Date
               </label>
             </div>
+            {expiryDateError && (
+              <p className="text-red-500 text-sm">{expiryDateError}</p>
+            )}
           </div>
           <div className="my-5">
             <p className="text-white pb-2">
@@ -284,7 +405,7 @@ const PaymentDetails = () => {
               <input
                 name="cvv"
                 value={formData.cvv}
-                onChange={handleChange}
+                onChange={handleCvv}
                 class="w-full peer h-full  rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
               />
@@ -292,6 +413,7 @@ const PaymentDetails = () => {
                 CVV
               </label>
             </div>
+            {cvvError && <p className="text-red-500 text-sm">{cvvError}</p>}
           </div>
           <div className="mt-3">
             <button

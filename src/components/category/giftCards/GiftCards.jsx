@@ -44,11 +44,9 @@ const GiftCards = () => {
               />
             </div>
             <div className="card-content p-3">
-              <h1 className="text-2xl py-2 text-white">
-                Netflix Gift Card 200 TL - Netflix Key
-              </h1>
+              <h1 className="text-2xl py-2 text-white">{`${giftCard.name}`}</h1>
               <span className="bg-red-500 text-white px-2 my-3 rounded-md">
-                TrendingProducts
+                {`${giftCard.subCategory}`}
               </span>
               <div className="py-3 flex gap-3">
                 <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">

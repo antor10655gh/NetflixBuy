@@ -36,7 +36,9 @@ const SingleProduct = () => {
           />
         </div>
         <div className="text-[#A6ADBA] px-10">
-          <p>{product.subCategory}</p>
+          <span className="bg-red-500 text-white px-2 my-3 rounded-md">
+            {product.subCategory}
+          </span>
           <h1 className="text-3xl pr-20">{product.name}</h1>
           <div className="flex items-center gap-3">
             <Ratings rating={product.rating} />
