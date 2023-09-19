@@ -20,31 +20,31 @@ const Header = () => {
   const myMenu = [
     {
       name: "Trending Products",
-      link: "/trending_products",
+      path: "/category/trendingProducts",
     },
     {
       name: "Gift Cards",
-      link: "/gift_cards",
+      path: "/category/giftCards",
     },
     {
       name: "Best Seller",
-      link: "/best_seller",
+      path: "/category/BestSeller",
     },
     {
       name: "Gaming Giftcards",
-      link: "/gaming_giftcards",
+      path: "/category/gamingGiftcards",
     },
     {
       name: "Video Games",
-      link: "/video_games",
+      path: "/category/videoGames",
     },
     {
       name: "Subscriptions",
-      link: "/subscriptions",
+      path: "/category/subscriptions",
     },
     {
       name: "Best Softwares",
-      link: "/best_softwares",
+      path: "/category/BestSoftware",
     },
   ];
 
@@ -59,7 +59,7 @@ const Header = () => {
         >
           <Link
             to={item.path}
-            className="flex items-center text-lg text-[#A6ADBA] hover:text-[#dc2626] focus:text-[#F7941F] transition duration-300 ease-in-out"
+            className="flex items-center text-lg text-[#A6ADBA] hover:text-[#dc2626] focus:text-[#dc2626] transition duration-300 ease-in-out"
           >
             {item.name}
           </Link>
@@ -83,7 +83,9 @@ const Header = () => {
           </Typography>
           <div className="hidden lg:block">{navList}</div>
           <div className="hidden lg:block">
-            <button className="prim_btn">Login</button>
+            <Link to="/login">
+              <button className="prim_btn">Login</button>
+            </Link>
           </div>
           <IconButton
             variant="text"
@@ -126,7 +128,9 @@ const Header = () => {
         <MobileNav open={openNav}>
           <div className="w-full container mx-auto">
             {navList}
-            <button className="prim_btn">Login</button>
+            <Link to="/login">
+              <button className="prim_btn">Login</button>
+            </Link>
           </div>
         </MobileNav>
       </Navbar>

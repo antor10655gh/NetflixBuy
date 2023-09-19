@@ -8,6 +8,7 @@ import About from "../views/About";
 import Terms from "../views/Terms";
 import SingleProduct from "../components/singleProduct/SingleProduct";
 import PaymentDetails from "../components/paymentDetails/PaymentDetails";
+import AllProducts from "../views/AllProducts";
 
 const Routers = () => {
   return (
@@ -18,6 +19,7 @@ const Routers = () => {
       <Route path="/terms" element={<Terms />} />
       <Route path="/payment-details" element={<PaymentDetails />} />
       <Route path="/product/:id" element={<SingleProduct />} />
+      <Route path="/category/:categoryName" element={<AllProducts />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />

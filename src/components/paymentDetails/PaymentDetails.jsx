@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Input } from "@material-tailwind/react";
 import bgImg from "../../assets/images/trending-hero.png";
 import { toast } from "react-toastify";
-import "./PaymentDetails.css";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const PaymentDetails = () => {
   const navigate = useNavigate();
@@ -203,17 +202,16 @@ const PaymentDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Message Send Successfully!", {
-          position: "top-right",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Transaction Successful",
+          showConfirmButton: false,
+          timer: 2000,
         });
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       });
 
     // Clear all input fields by resetting the formData state
@@ -417,10 +415,11 @@ const PaymentDetails = () => {
           </div>
           <div className="mt-3">
             <button
+              className="mt-6 block w-full select-none rounded-lg bg-[#dc2626] hover:bg-[#1d232a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-sm hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="submit"
-              className="w-full bg-[#dc2626] text-white rounded-md py-2"
+              data-ripple-light="true"
             >
-              Send Message
+              Submit
             </button>
           </div>
         </form>
