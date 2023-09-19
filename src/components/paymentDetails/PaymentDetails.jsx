@@ -143,49 +143,49 @@ const PaymentDetails = () => {
     e.preventDefault();
 
     if (formData.holdername === "") {
-      toast.error("Please enter your name", {
+      toast.error("Please holder name", {
         autoClose: 1500,
       });
       return;
     }
     if (formData.address === "") {
-      toast.error("Please enter your email", {
+      toast.error("Please enter your address", {
         autoClose: 1500,
       });
       return;
     }
     if (formData.city === "") {
-      toast.error("Please enter your subject", {
+      toast.error("Please enter your city", {
         autoClose: 1500,
       });
       return;
     }
     if (formData.state === "") {
-      toast.error("Please enter your message", {
+      toast.error("Please enter your state", {
         autoClose: 1500,
       });
       return;
     }
     if (formData.zipcode === "") {
-      toast.error("Please enter your message", {
+      toast.error("Please enter your zipcode", {
         autoClose: 1500,
       });
       return;
     }
     if (formData.cardnumber === "") {
-      toast.error("Please enter your message", {
+      toast.error("Please enter your card number", {
         autoClose: 1500,
       });
       return;
     }
     if (formData.expirydate === "") {
-      toast.error("Please enter your message", {
+      toast.error("Please enter your expiry date", {
         autoClose: 1500,
       });
       return;
     }
     if (formData.cvv === "") {
-      toast.error("Please enter your message", {
+      toast.error("Please enter your cvv", {
         autoClose: 1500,
       });
       return;
