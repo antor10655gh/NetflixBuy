@@ -9,8 +9,6 @@ const BestSeller = () => {
 
   const [bestSellers, setBestSellers] = React.useState([]);
 
-  const user = 
-
   const category = "BestSeller";
 
   React.useEffect(() => {
