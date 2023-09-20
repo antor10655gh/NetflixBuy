@@ -12,7 +12,15 @@ const SummerPlay = () => {
   const category = "SummerPlay";
 
   React.useEffect(() => {
-    fetch(`http://localhost:8000/api/v1/product/category/${category}`)
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    fetch(`http://localhost:8000/api/v1/product/category/${category}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
