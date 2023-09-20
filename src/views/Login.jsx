@@ -33,8 +33,6 @@ const Login = () => {
     });
   };
 
-  const token = JSON.parse(localStorage.getItem("token", user.token));
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -54,7 +52,7 @@ const Login = () => {
     console.log(formData);
 
     // You can send the form data to your server
-    fetch("http://localhost:8000/api/v1/paymentDetails", {
+    fetch("http://localhost:8000/api/v1/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,16 +72,9 @@ const Login = () => {
         });
         setTimeout(() => {
           navigate("/");
+          window.location.reload();
         }, 2000);
       });
-
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Login Successful",
-      showConfirmButton: false,
-      timer: 2000,
-    });
 
     // Clear all input fields by resetting the formData state
     setFormData({
@@ -152,7 +143,7 @@ const Login = () => {
                 onClick={togglePasswordVisibility}
                 className="absolute top-1/2 right-2 transform -translate-y-1/2 md:-translate-x-[50px] lg:-translate-x-[50px] text-blue-gray-400 cursor-pointer"
               >
-                {showPassword ? <BiHide /> : <BiShow />}
+                {showPassword ? <BiShow /> : <BiHide />}
               </button>
             </div>
             <a className="font-medium text-blue-500 transition-colors hover:text-blue-700 underline">

@@ -1,5 +1,6 @@
 import React from "react";
 import bgImg from "../../assets/images/hero.png";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -19,7 +20,9 @@ const Hero = () => {
               Tons of hot deals on video games, software, various gift cards,
               and more!
             </p>
-            <button className="prim_btn">Get started</button>
+            <Link to="/category/trendingProducts" className="prim_btn">
+              Get started
+            </Link>
           </div>
         </div>
       </div>

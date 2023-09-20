@@ -19,15 +19,11 @@ const TrendingProducts = () => {
   const [summerPlays, setSummerPlays] = React.useState([]);
 
   const { categoryName } = useParams();
-  console.log(categoryName);
 
   React.useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-
     fetch(`http://localhost:8000/api/v1/product/category/${categoryName}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${user.token}`,
         "Content-Type": "application/json",
       },
     })

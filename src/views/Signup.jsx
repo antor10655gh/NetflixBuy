@@ -72,7 +72,8 @@ const Signup = () => {
           timer: 2000,
         });
         setTimeout(() => {
-          navigate("/home");
+          navigate("/");
+          window.location.reload();
         }, 2000);
       });
 

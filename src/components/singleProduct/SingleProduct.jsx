@@ -17,12 +17,9 @@ const SingleProduct = () => {
   const [product, setProduct] = React.useState({});
 
   React.useEffect(() => {
-    const token = JSON.parse(localStorage.getItem(user.token));
-
     fetch(`http://localhost:8000/api/v1/product/${id}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     })

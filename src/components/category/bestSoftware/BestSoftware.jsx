@@ -12,12 +12,9 @@ const BestSofware = () => {
   const category = "BestSoftware";
 
   React.useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-
     fetch(`http://localhost:8000/api/v1/product/category/${category}`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${user.token}`,
         "Content-Type": "application/json",
       },
     })

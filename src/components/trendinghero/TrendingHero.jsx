@@ -1,5 +1,6 @@
 import React from "react";
 import bgImg from "../../assets/images/trending.jpg";
+import { Link } from "react-router-dom";
 
 const TrendingHero = () => {
   return (
@@ -20,7 +21,9 @@ const TrendingHero = () => {
               gift cards, and more. Buy bestselling games, and other digital
               products at the best possible price.
             </p>
-            <button className="prim_btn">See all</button>
+            <Link to="/category/trendingProducts" className="prim_btn">
+              See all
+            </Link>
           </div>
         </div>
       </div>

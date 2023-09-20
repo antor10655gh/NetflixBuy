@@ -10,6 +10,13 @@ import {
 const Header = () => {
   const [openNav, setOpenNav] = React.useState(false);
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
+
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -83,9 +90,15 @@ const Header = () => {
           </Typography>
           <div className="hidden lg:block">{navList}</div>
           <div className="hidden lg:block">
-            <Link to="/login">
-              <button className="prim_btn">Login</button>
-            </Link>
+            {user ? (
+              <Link to="/logout" onClick={handleLogOut}>
+                <button className="prim_btn">Logout</button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <button className="prim_btn">Login</button>
+              </Link>
+            )}
           </div>
           <IconButton
             variant="text"
@@ -128,9 +141,15 @@ const Header = () => {
         <MobileNav open={openNav}>
           <div className="w-full container mx-auto">
             {navList}
-            <Link to="/login">
-              <button className="prim_btn">Login</button>
-            </Link>
+            {user ? (
+              <Link to="/logout" onClick={handleLogOut}>
+                <button className="prim_btn">Logout</button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <button className="prim_btn">Login</button>
+              </Link>
+            )}
           </div>
         </MobileNav>
       </Navbar>
