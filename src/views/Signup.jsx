@@ -37,6 +37,12 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (formData.name === "") {
+      toast.error("Please enter your name", {
+        autoClose: 1500,
+      });
+      return;
+    }
     if (formData.email === "") {
       toast.error("Please enter your email", {
         autoClose: 1500,
@@ -76,14 +82,6 @@ const Signup = () => {
           window.location.reload();
         }, 2000);
       });
-
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Signup Successful",
-      showConfirmButton: false,
-      timer: 2000,
-    });
 
     // Clear all input fields by resetting the formData state
     setFormData({
