@@ -18,10 +18,10 @@ const TrendingProducts = () => {
 
   const [summerPlays, setSummerPlays] = React.useState([]);
 
-  const { categoryName } = useParams();
+  const category = "SummerPlay";
 
   React.useEffect(() => {
-    fetch(`http://localhost:8000/api/v1/product/category/${categoryName}`, {
+    fetch(`http://localhost:8000/api/v1/product/category/${category}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const TrendingProducts = () => {
         console.log(data);
         setSummerPlays(data);
       });
-  }, [categoryName]);
+  }, [category]);
   return (
     <>
       {user ? (

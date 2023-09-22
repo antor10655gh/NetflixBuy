@@ -93,7 +93,7 @@ const Signup = () => {
 
   return (
     <div
-      className="h-[80vh] w-full flex justify-center items-center bg-no-repeat bg-cover bg-center"
+      className="h-[100vh] w-full pt-5 lg:pt-10 flex justify-center items-center bg-no-repeat bg-cover bg-center"
       style={divStyle}
     >
       <div className="form-card md:w-[400px] lg:w-[400px] relative flex flex-col rounded-xl bg-[#1D232A] py-5 px-8 bg-clip-border text-gray-700 shadow-none">
