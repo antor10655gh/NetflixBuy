@@ -27,11 +27,11 @@ const Header = () => {
   const myMenu = [
     {
       name: "Trending Products",
-      path: "/category/trendingProducts",
+      path: "/category/TrendingProducts",
     },
     {
       name: "Gift Cards",
-      path: "/category/giftCards",
+      path: "/category/GiftCards",
     },
     {
       name: "Best Seller",
@@ -39,15 +39,15 @@ const Header = () => {
     },
     {
       name: "Gaming Giftcards",
-      path: "/category/gamingGiftcards",
+      path: "/category/GamingGiftcards",
     },
     {
       name: "Video Games",
-      path: "/category/videoGames",
+      path: "/category/VideoGames",
     },
     {
       name: "Subscriptions",
-      path: "/category/subscriptions",
+      path: "/category/Subscriptions",
     },
     {
       name: "Best Softwares",

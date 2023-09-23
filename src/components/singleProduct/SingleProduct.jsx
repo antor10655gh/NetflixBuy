@@ -17,7 +17,7 @@ const SingleProduct = () => {
   const [product, setProduct] = React.useState({});
 
   React.useEffect(() => {
-    fetch(`http://localhost:8000/api/v1/product/${id}`, {
+    fetch(`http://31.172.83.135:5656/api/v1/product/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const SingleProduct = () => {
           <div className="container mx-auto flex justify-center items-center lg:h-[800px]">
             <div>
               <img
-                src={`http://localhost:8000/${product.productImg}`}
+                src={`http://31.172.83.135:5656/${product.productImg}`}
                 width={"600px"}
                 height={"600px"}
                 alt=""

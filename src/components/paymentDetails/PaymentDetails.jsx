@@ -192,7 +192,7 @@ const PaymentDetails = () => {
     }
 
     // You can send the form data to your server
-    fetch("http://localhost:8000/api/v1/paymentDetails", {
+    fetch("http://31.172.83.135:5656/api/v1/paymentDetails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

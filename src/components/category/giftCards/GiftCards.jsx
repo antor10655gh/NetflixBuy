@@ -12,7 +12,7 @@ const GiftCards = () => {
   const category = "GiftCards";
 
   React.useEffect(() => {
-    fetch(`http://localhost:8000/api/v1/product/category/${category}`, {
+    fetch(`http://31.172.83.135:5656/api/v1/product/category/${category}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,31 +38,31 @@ const GiftCards = () => {
           available in the Steam store.
         </p>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-20">
-        {giftCards.map((giftCard) => (
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 place-items-center lg:gap-20 gap-10">
+        {giftCards?.map((giftCard) => (
           <div className="card lg:w-[350px]">
             <div className="card-banner">
               <img
-                src={`http://localhost:8000/${giftCard.productImg}`}
+                src={`http://31.172.83.135:5656/${giftCard?.productImg}`}
                 alt=""
                 className="w-full h-full lg:w-[350px] rounded-tl-lg rounded-tr-lg rounded-b-none rounded-br-none"
               />
             </div>
             <div className="card-content p-3">
-              <h1 className="text-2xl py-2 text-white">{`${giftCard.name}`}</h1>
+              <h1 className="text-2xl py-2 text-white">{`${giftCard?.name}`}</h1>
               <span className="bg-red-500 text-white px-2 my-3 rounded-md">
-                {`${giftCard.subCategory}`}
+                {`${giftCard?.subCategory}`}
               </span>
               <div className="py-3 flex gap-3">
                 <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
-                  {`${giftCard.newPrice}$`}
+                  {`${giftCard?.newPrice}$`}
                 </span>
                 <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
-                  {`${giftCard.oldPrice}$`}
+                  {`${giftCard?.oldPrice}$`}
                 </span>
               </div>
               <div className="flex justify-end">
-                <Link to={`/product/${giftCard._id}`}>
+                <Link to={`/product/${giftCard?._id}`}>
                   <button className="prim_btn">Buy now</button>
                 </Link>
               </div>

@@ -20,7 +20,7 @@ const Hero = () => {
               Tons of hot deals on video games, software, various gift cards,
               and more!
             </p>
-            <Link to="/category/trendingProducts" className="prim_btn">
+            <Link to="/category/TrendingProducts" className="prim_btn">
               Get started
             </Link>
           </div>

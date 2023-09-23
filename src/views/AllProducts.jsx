@@ -6,6 +6,9 @@ import Loader from "../components/loader/Loader";
 const TrendingProducts = () => {
   const [user, setUser] = useState(false);
 
+  const { category } = useParams();
+  console.log(category);
+
   useEffect(() => {
     setTimeout(() => {
       setUser(true);
@@ -16,12 +19,10 @@ const TrendingProducts = () => {
     backgroundImage: `url(${bgImg})`,
   };
 
-  const [summerPlays, setSummerPlays] = React.useState([]);
-
-  const category = "SummerPlay";
+  const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
-    fetch(`http://localhost:8000/api/v1/product/category/${category}`, {
+    fetch(`http://31.172.83.135:5656/api/v1/product/category/${category}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +31,7 @@ const TrendingProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setSummerPlays(data);
+        setProducts(data);
       });
   }, [category]);
   return (
@@ -41,39 +42,39 @@ const TrendingProducts = () => {
           style={divStyle}
         >
           <div className="text-white text-center lg:text-start pb-12">
-            <h1 className="text-3xl py-2">All Products</h1>
+            <h1 className="text-3xl py-2"> {category}</h1>
             <p>
               Tons of hot deals on video games, software, various gift cards,
               and more!
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-20">
-            {summerPlays.map((summerPlay) => (
+            {products?.map((product) => (
               <div className="card lg:w-[350px]">
                 <div className="card-banner">
                   <img
-                    src={`http://localhost:8000/${summerPlay.productImg}`}
+                    src={`http://31.172.83.135:5656/${product?.productImg}`}
                     alt=""
                     className="w-full h-full lg:w-[350px] rounded-tl-lg rounded-tr-lg rounded-b-none rounded-br-none"
                   />
                 </div>
                 <div className="card-content p-3">
                   <h1 className="text-2xl py-2 text-white">
-                    {`${summerPlay.name}`}
+                    {`${product?.name}`}
                   </h1>
                   <span className="bg-red-500 text-white px-2 my-3 rounded-md">
-                    {`${summerPlay.subCategory}`}
+                    {`${product?.subCategory}`}
                   </span>
                   <div className="py-3 flex gap-3">
                     <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
-                      {`${summerPlay.newPrice}$`}
+                      {`${product?.newPrice}$`}
                     </span>
                     <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
-                      {`${summerPlay.oldPrice}$`}
+                      {`${product?.oldPrice}$`}
                     </span>
                   </div>
                   <div className="flex justify-end">
-                    <Link to={`/product/${summerPlay._id}`}>
+                    <Link to={`/product/${product?._id}`}>
                       <button className="prim_btn">Buy now</button>
                     </Link>
                   </div>
