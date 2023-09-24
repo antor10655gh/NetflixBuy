@@ -7,27 +7,11 @@ const BestSeller = () => {
     backgroundImage: `url(${bgImg})`,
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [bestSellers, setBestSellers] = useState([]);
 
   const category = "BestSeller";
-
-  // const handleBestSeller = async() => {
-  //   await fetch(`https://netflixbuy-server-production.up.railway.app/api/v1/product/category/${category}`, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setBestSellers(data);
-
-  //     });
-
-  // }
-
-  // handleBestSeller();
 
   useEffect(() => {
     fetch(
@@ -80,9 +64,15 @@ const BestSeller = () => {
               </div>
             </div>
             <div className="flex justify-end p-3">
-              <Link to={`/product/${bestSeller?._id}`}>
-                <button className="prim_btn">Buy now</button>
-              </Link>
+              {user ? (
+                <Link to={`/product/${bestSeller?._id}`}>
+                  <button className="prim_btn">Buy now</button>
+                </Link>
+              ) : (
+                <Link to={`/login`}>
+                  <button className="prim_btn">Buy now</button>
+                </Link>
+              )}
             </div>
           </div>
         ))}

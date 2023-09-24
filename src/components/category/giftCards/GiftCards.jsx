@@ -7,6 +7,8 @@ const GiftCards = () => {
     backgroundImage: `url(${bgImg})`,
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [giftCards, setGiftCards] = React.useState([]);
 
   const category = "GiftCards";
@@ -65,9 +67,15 @@ const GiftCards = () => {
                 </span>
               </div>
               <div className="flex justify-end">
-                <Link to={`/product/${giftCard?._id}`}>
-                  <button className="prim_btn">Buy now</button>
-                </Link>
+                {user ? (
+                  <Link to={`/product/${giftCard?._id}`}>
+                    <button className="prim_btn">Buy now</button>
+                  </Link>
+                ) : (
+                  <Link to={`/login`}>
+                    <button className="prim_btn">Buy now</button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
