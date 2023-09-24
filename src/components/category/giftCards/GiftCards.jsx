@@ -41,7 +41,7 @@ const GiftCards = () => {
           available in the Steam store.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 place-items-center lg:gap-20 gap-10">
+      <div className="card-container">
         {giftCards?.map((giftCard) => (
           <div className="card lg:w-[350px]">
             <div className="card-banner">

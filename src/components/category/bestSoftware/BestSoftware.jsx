@@ -40,7 +40,7 @@ const BestSofware = () => {
           professional life, you will find it all here at attractive prices.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 place-items-center lg:gap-20 gap-10">
+      <div className="card-container">
         {bestSofwares?.map((bestSofware) => (
           <div className="card lg:w-[350px]">
             <div className="card-banner">
