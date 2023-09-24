@@ -85,6 +85,12 @@ body {
   }
 }
 
+/* single product image */
+.single-product-img {
+  width: 300px;
+  height: 400px;
+}
+
 /* form design */
 .form-card {
   background: rgba(77, 77, 77, 0.15);
@@ -99,11 +105,21 @@ body {
   .card-container {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  .single-product-img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .card-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .single-product-img {
+    width: 300px;
+    height: 400px;
   }
 }
 
@@ -111,10 +127,19 @@ body {
   .card-container {
     grid-template-columns: repeat(3, 1fr);
   }
+  .single-product-img {
+    width: 300px;
+    height: 400px;
+  }
 }
 
 @media screen and (min-width: 1536px) {
   .card-container {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .single-product-img {
+    width: 400px;
+    height: 500px;
   }
 }

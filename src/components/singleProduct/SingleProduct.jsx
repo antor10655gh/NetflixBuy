@@ -40,9 +40,8 @@ const SingleProduct = () => {
           <div className="container mx-auto flex flex-col lg:flex-row justify-center items-center lg:h-[800px]">
             <div className="py-8 lg:py-0">
               <img
+                className="single-product-img"
                 src={`https://netflixbuy-server-production.up.railway.app/${product.productImg}`}
-                width={"600px"}
-                height={"600px"}
                 alt=""
               />
             </div>
