@@ -37,8 +37,8 @@ const SingleProduct = () => {
     <>
       {product ? (
         <div className="bg-no-repeat bg-cover bg-center" style={divStyle}>
-          <div className="container mx-auto flex justify-center items-center lg:h-[800px]">
-            <div>
+          <div className="container mx-auto flex flex-col lg:flex-row justify-center items-center lg:h-[800px]">
+            <div className="py-8 lg:py-0">
               <img
                 src={`https://netflixbuy-server-production.up.railway.app/${product.productImg}`}
                 width={"600px"}
@@ -47,10 +47,10 @@ const SingleProduct = () => {
               />
             </div>
             <div className="text-[#A6ADBA] px-10">
-              <span className="bg-red-500 text-white px-2 my-3 rounded-md">
+              <span className="text-sm lg:text-lg bg-red-500 text-white px-2 my-3 rounded-md">
                 {product.subCategory}
               </span>
-              <h1 className="text-3xl pr-20">{product.name}</h1>
+              <h1 className="text-xl lg:text-3xl pr-20">{product.name}</h1>
               <div className="flex items-center gap-3">
                 <Ratings rating={product.rating} />
                 <div className="h-[40px] w-[1px] bg-[#A6ADBA] mx-3"></div>
