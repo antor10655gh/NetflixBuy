@@ -17,12 +17,15 @@ const SingleProduct = () => {
   const [product, setProduct] = React.useState({});
 
   React.useEffect(() => {
-    fetch(`http://31.172.83.135:5656/api/v1/product/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://netflixbuy-server-production.up.railway.app/api/v1/product/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -37,7 +40,7 @@ const SingleProduct = () => {
           <div className="container mx-auto flex justify-center items-center lg:h-[800px]">
             <div>
               <img
-                src={`http://31.172.83.135:5656/${product.productImg}`}
+                src={`https://netflixbuy-server-production.up.railway.app/${product.productImg}`}
                 width={"600px"}
                 height={"600px"}
                 alt=""

@@ -11,13 +11,34 @@ const BestSeller = () => {
 
   const category = "BestSeller";
 
+  // const handleBestSeller = async() => {
+  //   await fetch(`https://netflixbuy-server-production.up.railway.app/api/v1/product/category/${category}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setBestSellers(data);
+
+  //     });
+
+  // }
+
+  // handleBestSeller();
+
   useEffect(() => {
-    fetch(`http://31.172.83.135:5656/api/v1/product/category/${category}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://netflixbuy-server-production.up.railway.app/api/v1/product/category/${category}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -39,7 +60,7 @@ const BestSeller = () => {
           <div className="card lg:w-[350px]">
             <div className="card-banner">
               <img
-                src={`http://31.172.83.135:5656/${bestSeller?.productImg}`}
+                src={`https://netflixbuy-server-production.up.railway.app/${bestSeller?.productImg}`}
                 alt=""
                 className="w-full h-full lg:w-[350px] h-[400px] rounded-tl-lg rounded-tr-lg rounded-b-none rounded-br-none "
               />

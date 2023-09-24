@@ -29,13 +29,16 @@ const GoogleLogin = () => {
       };
 
       // You can send the form data to your server
-      fetch("http://31.172.83.135:5656/api/v1/user/addUser", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      })
+      fetch(
+        "https://netflixbuy-server-production.up.railway.app/api/v1/user/addUser",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -64,7 +67,7 @@ const GoogleLogin = () => {
   //         window.location.reload();
   //       }, 2000);
   //       // You can send the form data to your server
-  //       fetch("http://31.172.83.135:5656/api/v1/user/addUser", {
+  //       fetch("https://netflixbuy-server-production.up.railway.app/api/v1/user/addUser", {
   //         method: "POST",
   //         headers: {
   //           "Content-Type": "application/json",

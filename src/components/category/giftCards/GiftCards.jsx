@@ -12,12 +12,15 @@ const GiftCards = () => {
   const category = "GiftCards";
 
   React.useEffect(() => {
-    fetch(`http://31.172.83.135:5656/api/v1/product/category/${category}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://netflixbuy-server-production.up.railway.app/api/v1/product/category/${category}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -43,7 +46,7 @@ const GiftCards = () => {
           <div className="card lg:w-[350px]">
             <div className="card-banner">
               <img
-                src={`http://31.172.83.135:5656/${giftCard?.productImg}`}
+                src={`https://netflixbuy-server-production.up.railway.app/${giftCard?.productImg}`}
                 alt=""
                 className="w-full h-full lg:w-[350px] rounded-tl-lg rounded-tr-lg rounded-b-none rounded-br-none"
               />
