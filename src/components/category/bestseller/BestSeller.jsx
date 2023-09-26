@@ -41,38 +41,45 @@ const BestSeller = () => {
       </div>
       <div className="card-container">
         {bestSellers?.map((bestSeller) => (
-          <div className="card lg:w-[350px]">
-            <div className="card-banner">
+          <div class="card relative flex w-full lg:w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div class="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
               <img
                 src={`https://netflixbuy-server-production.up.railway.app/${bestSeller?.productImg}`}
-                alt=""
-                className="w-full h-full lg:w-[350px] h-[400px] rounded-tl-lg rounded-tr-lg rounded-b-none rounded-br-none "
+                alt="img-blur-shadow"
+                layout="fill"
+                className="w-full h-full"
               />
             </div>
-            <div className="card-content p-3">
-              <h1 className="text-2xl py-2 text-white">{bestSeller?.name}</h1>
-              <span className="bg-red-500 text-white px-2 my-3 rounded-md">
-                {bestSeller?.subCategory}
-              </span>
-              <div className="py-3 flex gap-3">
-                <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
-                  {`${bestSeller.newPrice}$`}
+            <div class="p-6">
+              <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-white antialiased">
+                {bestSeller?.name.slice(0, 25) + " ..."}
+              </h5>
+              <div className="card-content">
+                <span className="bg-red-500 text-white px-2 my-3 rounded-md">
+                  {bestSeller?.subCategory}
                 </span>
-                <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
-                  {`${bestSeller?.oldPrice}$`}
-                </span>
+                <div className="py-3 flex gap-3">
+                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
+                    {`${bestSeller.newPrice}$`}
+                  </span>
+                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
+                    {`${bestSeller?.oldPrice}$`}
+                  </span>
+                </div>
               </div>
             </div>
-            <div className="flex justify-end p-3">
-              {user ? (
-                <Link to={`/product/${bestSeller?._id}`}>
-                  <button className="prim_btn">Buy now</button>
-                </Link>
-              ) : (
-                <Link to={`/login`}>
-                  <button className="prim_btn">Buy now</button>
-                </Link>
-              )}
+            <div class="p-6 pt-0">
+              <div className="flex justify-end p-3">
+                {user ? (
+                  <Link to={`/product/${bestSeller?._id}`}>
+                    <button className="prim_btn">Buy now</button>
+                  </Link>
+                ) : (
+                  <Link to={`/login`}>
+                    <button className="prim_btn">Buy now</button>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         ))}

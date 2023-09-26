@@ -44,30 +44,35 @@ const Subscriptions = () => {
       </div>
       <div className="card-container">
         {subscriptions?.map((subscription) => (
-          <div className="card lg:w-[350px]">
-            <div className="card-banner">
+          <div class="card relative flex w-full lg:w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div class="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
               <img
                 src={`https://netflixbuy-server-production.up.railway.app/${subscription?.productImg}`}
-                alt=""
-                className="w-full h-full lg:w-[350px] rounded-tl-lg rounded-tr-lg rounded-b-none rounded-br-none"
+                alt="img-blur-shadow"
+                layout="fill"
+                className="w-full h-full"
               />
             </div>
-            <div className="card-content p-3">
-              <h1 className="text-2xl py-2 text-white">
-                {`${subscription?.name}`}
-              </h1>
-              <span className="bg-red-500 text-white px-2 my-3 rounded-md">
-                {`${subscription?.subCategory}`}
-              </span>
-              <div className="py-3 flex gap-3">
-                <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
-                  {`${subscription?.newPrice}$`}
+            <div class="p-6">
+              <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-white antialiased">
+                {subscription?.name.slice(0, 25) + " ..."}
+              </h5>
+              <div className="card-content">
+                <span className="bg-red-500 text-white px-2 my-3 rounded-md">
+                  {subscription?.subCategory}
                 </span>
-                <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
-                  {`${subscription?.oldPrice}$`}
-                </span>
+                <div className="py-3 flex gap-3">
+                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
+                    {`${subscription.newPrice}$`}
+                  </span>
+                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
+                    {`${subscription?.oldPrice}$`}
+                  </span>
+                </div>
               </div>
-              <div className="flex justify-end">
+            </div>
+            <div class="p-6 pt-0">
+              <div className="flex justify-end p-3">
                 {user ? (
                   <Link to={`/product/${subscription?._id}`}>
                     <button className="prim_btn">Buy now</button>

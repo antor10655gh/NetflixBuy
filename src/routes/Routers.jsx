@@ -9,21 +9,25 @@ import Terms from "../views/Terms";
 import SingleProduct from "../components/singleProduct/SingleProduct";
 import PaymentDetails from "../components/paymentDetails/PaymentDetails";
 import AllProducts from "../views/AllProducts";
+import ScrollToTop from "../shared/ScrollToTop";
 
 const Routers = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/terms" element={<Terms />} />
-      <Route path="/payment-details" element={<PaymentDetails />} />
-      <Route path="/product/:id" element={<SingleProduct />} />
-      <Route path="/category/:category" element={<AllProducts />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/payment-details" element={<PaymentDetails />} />
+        <Route path="/product/:id" element={<SingleProduct />} />
+        <Route path="/category/:category" element={<AllProducts />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </>
   );
 };
 
