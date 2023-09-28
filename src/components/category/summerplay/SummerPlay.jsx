@@ -44,8 +44,8 @@ const SummerPlay = () => {
       </div>
       <div className="card-container">
         {summerPlays?.map((summerPlay) => (
-          <div class="card relative flex w-full lg:w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-            <div class="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+          <div className="card relative flex w-full lg:w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div className="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
               <img
                 src={`https://netflixbuy-server-production.up.railway.app/${summerPlay?.productImg}`}
                 alt="img-blur-shadow"
@@ -53,8 +53,8 @@ const SummerPlay = () => {
                 className="w-full h-full"
               />
             </div>
-            <div class="p-6">
-              <h5 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-white antialiased">
+            <div className="p-6">
+              <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-white antialiased">
                 {summerPlay?.name.slice(0, 25) + " ..."}
               </h5>
               <div className="card-content">
@@ -71,7 +71,7 @@ const SummerPlay = () => {
                 </div>
               </div>
             </div>
-            <div class="p-6 pt-0">
+            <div className="p-6 pt-0">
               <div className="flex justify-end p-3">
                 {user ? (
                   <Link to={`/product/${summerPlay?._id}`}>
