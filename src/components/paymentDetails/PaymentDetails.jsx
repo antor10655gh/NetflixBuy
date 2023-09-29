@@ -100,6 +100,14 @@ const PaymentDetails = () => {
     });
   };
 
+  const handleKeyPress = (e) => {
+    // Allow only numeric input (0-9)
+    const isNumeric = /^\d+$/.test(e.key);
+    if (!isNumeric) {
+      e.preventDefault();
+    }
+  };
+
   const handleExpiryDate = (e) => {
     const { name, value } = e.target;
 
@@ -151,30 +159,29 @@ const PaymentDetails = () => {
 
   const handleCvv = (e) => {
     const { name, value } = e.target;
-    const cvv = formData.cvv;
+    let formattedCardNumber = value.replace(/\s/g, "");
 
-    // Check if the input value is numeric and contains exactly 3 digits
-    if (/^\d{3}$/.test(value)) {
-      setCvvError("");
-      // Disable further input by removing the event listener for keydown
-      e.target.removeEventListener("keydown", handleKeyDown);
+    // Check if the input consists of numbers only
+    if (!/^\d+$/.test(formattedCardNumber)) {
+      setCvvError("Please enter a valid numeric cvv number.");
+    } else if (formattedCardNumber.length > 3) {
+      // If the input exceeds 16 digits after removing spaces, truncate it
+      formattedCardNumber = formattedCardNumber.slice(0, 3);
     } else {
-      setCvvError("CVV must be a three-digit numeric value.");
-      // Enable the event listener for keydown to allow correction
-      e.target.addEventListener("keydown", handleKeyDown);
+      setCvvError("");
     }
+
+    // Format the card number with spaces after every 4 digits
+    let formattedValue = "";
+    for (let i = 0; i < formattedCardNumber.length; i += 3) {
+      formattedValue += formattedCardNumber.slice(i, i + 3) + " ";
+    }
+    formattedValue = formattedValue.trim(); // Remove the trailing space
 
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: formattedValue,
     });
-  };
-
-  const handleKeyDown = (e) => {
-    // Prevent non-numeric characters and more than 3 digits from being input
-    if (!/^\d$/.test(e.key) || e.target.value.length >= 3) {
-      e.preventDefault();
-    }
   };
 
   const processingAlert = () => {
@@ -379,6 +386,7 @@ const PaymentDetails = () => {
                 name="zipcode"
                 value={formData.zipcode}
                 onChange={handleZipCode}
+                onKeyPress={handleKeyPress}
                 className="w-full peer h-full lg:w-[105px]  rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
               />
@@ -437,6 +445,7 @@ const PaymentDetails = () => {
                 name="cardnumber"
                 value={formData.cardnumber}
                 onChange={handleCardNumber}
+                onKeyPress={handleKeyPress}
                 className="w-full peer h-full  rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
               />
@@ -481,6 +490,7 @@ const PaymentDetails = () => {
                 name="cvv"
                 value={formData.cvv}
                 onChange={handleCvv}
+                onKeyPress={handleKeyPress}
                 className="w-full peer h-full  rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" "
               />
