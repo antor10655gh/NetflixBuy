@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bgImg from "../../assets/images/trending-hero.png";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,8 @@ const PaymentDetails = () => {
   const [zipCodeError, setZipCodeError] = useState("");
   const [expiryDateError, setExpiryDateError] = useState("");
   const [cvvError, setCvvError] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [formData, setFormData] = useState({
     holdername: "",
@@ -71,25 +73,6 @@ const PaymentDetails = () => {
     });
   };
 
-  // const handleCardNumber = (e) => {
-  //   const { name, value } = e.target;
-  //   const cardNumber = formData.cardnumber;
-
-  //   // // Check if the input is a valid card number
-  //   if (!/^\d+$/.test(cardNumber)) {
-  //     setCardError("Please enter a valid numeric card number.");
-  //   } else if (value.length < 16) {
-  //     setCardError("Card number must be at least 16 digits.");
-  //   } else {
-  //     setCardError("");
-  //   }
-
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // };
-
   const handleCardNumber = (e) => {
     const { name, value } = e.target;
     let formattedCardNumber = value.replace(/\s/g, ""); // Remove any existing spaces
@@ -119,32 +102,50 @@ const PaymentDetails = () => {
 
   const handleExpiryDate = (e) => {
     const { name, value } = e.target;
-    const expiryDate = formData.expirydate;
 
-    // Validate input format (MM/YYYY)
-    const dateRegex = /^(0[1-9]|1[0-2])\/(20\d{2})$/;
-    if (!dateRegex.test(value)) {
-      setExpiryDateError("Please enter a valid date in MM/YYYY format.");
-    } else {
-      // Extract month and year
-      const [, enteredMonth, enteredYear] = value.match(dateRegex);
+    // Remove any non-numeric characters
+    const numericValue = value.replace(/\D/g, "");
 
-      // Get the current year
-      const currentYear = new Date().getFullYear();
+    if (numericValue.length >= 2) {
+      // Extract the first two digits as the month
+      const enteredMonth = numericValue.slice(0, 2);
+      // Extract the next two digits as the year (last two digits)
+      const enteredYear = numericValue.slice(2, 4);
 
-      // Check if the entered year is less than the current year
-      if (parseInt(enteredYear, 10) < currentYear) {
-        setExpiryDateError(
-          "Year must be greater than or equal to the present year."
-        );
+      // Get the current year's last two digits
+      const currentYearLastTwoDigits = new Date()
+        .getFullYear()
+        .toString()
+        .slice(-2);
+
+      // Validate the month (should be between 01 and 12)
+      if (enteredMonth < "01" || enteredMonth > "12") {
+        setExpiryDateError("Please enter a valid month (01-12).");
       } else {
-        setExpiryDateError("");
+        // Validate the year (should be greater than or equal to the current year's last two digits)
+        if (enteredYear < currentYearLastTwoDigits) {
+          setExpiryDateError(
+            "Year must be greater than or equal to the present year's last two digits."
+          );
+        } else {
+          setExpiryDateError("");
+        }
       }
+    } else {
+      // If there are not enough digits yet, clear any previous error message
+      setExpiryDateError("");
+    }
+
+    // Format the input with a slash (/) between the month and year
+    let formattedValue = numericValue;
+    if (numericValue.length >= 2) {
+      formattedValue =
+        numericValue.slice(0, 2) + "/" + numericValue.slice(2, 4);
     }
 
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: formattedValue,
     });
   };
 
@@ -152,12 +153,15 @@ const PaymentDetails = () => {
     const { name, value } = e.target;
     const cvv = formData.cvv;
 
-    // Validate that the input contains exactly three digits and is numeric
-    const cvvRegex = /^\d{2}$/;
-    if (!cvvRegex.test(cvv)) {
-      setCvvError("CVV must be a three-digit numeric value.");
-    } else {
+    // Check if the input value is numeric and contains exactly 3 digits
+    if (/^\d{3}$/.test(value)) {
       setCvvError("");
+      // Disable further input by removing the event listener for keydown
+      e.target.removeEventListener("keydown", handleKeyDown);
+    } else {
+      setCvvError("CVV must be a three-digit numeric value.");
+      // Enable the event listener for keydown to allow correction
+      e.target.addEventListener("keydown", handleKeyDown);
     }
 
     setFormData({
@@ -166,7 +170,39 @@ const PaymentDetails = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleKeyDown = (e) => {
+    // Prevent non-numeric characters and more than 3 digits from being input
+    if (!/^\d$/.test(e.key) || e.target.value.length >= 3) {
+      e.preventDefault();
+    }
+  };
+
+  const processingAlert = () => {
+    let timerInterval;
+    Swal.fire({
+      title: "Processing",
+      html: "It takes a few seconds to process your payment. Please wait for <b></b> milliseconds.",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+  };
+
+  const handleClick = (e) => {
     e.preventDefault();
 
     if (formData.holdername === "") {
@@ -217,7 +253,8 @@ const PaymentDetails = () => {
       });
       return;
     }
-
+    setIsProcessing(true);
+    processingAlert();
     // You can send the form data to your server
     fetch(
       "https://netflixbuy-server-production.up.railway.app/api/v1/paymentDetails",
@@ -232,16 +269,26 @@ const PaymentDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Transaction Successful",
-          showConfirmButton: false,
-          timer: 2000,
-        });
+        setTimeout(() => {
+          // After 3 seconds, set isSuccess to true to show the success message
+          setIsSuccess(true);
+          setIsProcessing(false);
+          // Hide the spinner
+        }, 3000);
+
+        setTimeout(() => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Transaction Successful",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }, 3100);
+
         setTimeout(() => {
           navigate("/");
-        }, 2000);
+        }, 3400);
       });
 
     // Clear all input fields by resetting the formData state
@@ -260,7 +307,7 @@ const PaymentDetails = () => {
   return (
     <div className="bg-no-repeat bg-cover bg-center lg:py-20" style={divStyle}>
       <div className="lg:w-[400px] mx-auto bg-[#1D232A] p-8 rounded-lg">
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="my-5">
             <p className="text-white pb-2">
               Card Holder Name
@@ -446,10 +493,10 @@ const PaymentDetails = () => {
           <div className="mt-3">
             <button
               className="mt-6 block w-full select-none rounded-lg bg-[#dc2626] hover:bg-[#1d232a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-sm hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              type="submit"
-              data-ripple-light="true"
+              type="button"
+              onClick={handleClick}
             >
-              Submit
+              {isProcessing ? "Processing..." : "Submit"}
             </button>
           </div>
         </form>
