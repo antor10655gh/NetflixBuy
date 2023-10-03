@@ -1,14 +1,33 @@
 import React, { useEffect, useState } from "react";
 import bgImg from "../../assets/images/trending-hero.png";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const PaymentDetails = () => {
   const navigate = useNavigate();
-  const divStyle = {
-    backgroundImage: `url(${bgImg})`,
-  };
+
+  const { id } = useParams();
+
+  const [product, setProduct] = React.useState({});
+
+  useEffect(() => {
+    fetch(
+      `https://netflixbuy-server-production.up.railway.app/api/v1/product/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setProduct(data);
+      });
+  }, [id]);
+
   const [nameError, setNameError] = useState("");
   const [cardError, setCardError] = useState("");
   const [zipCodeError, setZipCodeError] = useState("");
@@ -212,6 +231,9 @@ const PaymentDetails = () => {
   const handleClick = (e) => {
     e.preventDefault();
 
+    const orderId = Math.floor(Math.random() * 1000000); // Generates a random number between 0 and 999999
+    const transactionId = Math.floor(Math.random() * 1000000000); // Generates a random number between 0 and 999999999
+
     if (formData.holdername === "") {
       toast.error("Please holder name", {
         autoClose: 1500,
@@ -287,9 +309,22 @@ const PaymentDetails = () => {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: "Transaction Successful",
+            title: "✅ Transaction Successful",
+            html: `
+              <div style="text-align: center;">
+                <p>Thank You! Your payment of <span style="font-weight: bold;">$${product.newPrice}</span> has been successfully processed.</p>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
+                  <p> <span style="font-weight: bold;">Order ID:</span> ${orderId}</p>
+                  <div style="width: 2px; height: 15px; background-color: #B4B4B3; margin: 0 10px"></div>
+                  <p> <span style="font-weight: bold;">Transaction ID:</span> ${transactionId}</p>
+                </div>
+              </div>
+            `,
             showConfirmButton: false,
-            timer: 3000,
+            timer: 5000, // Adjust the timer duration (in milliseconds) as needed
+            customClass: {
+              content: "custom-swal-content", // Add a custom CSS class for styling
+            },
           });
         }, 3100);
 

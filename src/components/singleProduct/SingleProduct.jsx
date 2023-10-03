@@ -78,7 +78,7 @@ const SingleProduct = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Link to="/payment-details">
+                  <Link to={`/payment-details/${product?._id}`}>
                     <button className="px-8 py-2 rounded-md bg-[#8EA406] hover:bg-[#a1b909] hover:text-white transition duration-300 text-black">
                       Confirm
                     </button>
