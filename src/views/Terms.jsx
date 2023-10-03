@@ -6,7 +6,7 @@ const Terms = () => {
       <div className="px-12 py-5">
         <h1 className="text-xl lg:text-3xl pb-3"> Terms of Use</h1>
         <p className="text-base lg:text-lg leading-[10px]">
-          Welcome to Netflixbuy! These Terms of Use outline the rules and
+          Welcome to GCardBuy! These Terms of Use outline the rules and
           regulations for accessing and using our website. By using our website,
           you agree to comply with these terms. If you do not agree with any
           part of these terms, please refrain from using our site.
@@ -21,7 +21,7 @@ const Terms = () => {
           The content, design, and materials available on our website are
           protected by applicable copyright, trademark, and other intellectual
           property laws. All intellectual property rights are reserved by
-          Netflixbuy and its licensors. You are not permitted to reproduce,
+          GCardBuy and its licensors. You are not permitted to reproduce,
           distribute, or otherwise use any content from our website without
           prior written permission from us.
         </p>
@@ -80,7 +80,7 @@ const Terms = () => {
       <div className="px-12 py-5">
         <h1 className="text-xl lg:text-3xl pb-3">Limitation of Liability</h1>
         <p className="text-base lg:text-lg leading-[10px]">
-          Netflixbuy, its directors, employees, or agents will not be liable for
+          GCardBuy, its directors, employees, or agents will not be liable for
           any direct, indirect, incidental, consequential, or punitive damages
           arising from the use of our website or any content available on it.
           This includes, but is not limited to, damages for loss of profits,
@@ -92,7 +92,7 @@ const Terms = () => {
       <div className="px-12 py-5">
         <h1 className="text-xl lg:text-3xl pb-3">Changes to Terms</h1>
         <p className="text-base lg:text-lg leading-[10px]">
-          Netflixbuy may revise and update these Terms of Use from time to time.
+          GCardBuy may revise and update these Terms of Use from time to time.
           Any changes will be effective immediately upon posting on our website.
           Your continued use of our website after such modifications will
           constitute your acknowledgment and acceptance of the updated terms.
@@ -107,7 +107,7 @@ const Terms = () => {
         </p>
 
         <p className="text-base lg:text-lg leading-[10px]">
-          Thank you for using Netflixbuy. We hope you find our website valuable
+          Thank you for using GCardBuy. We hope you find our website valuable
           and enjoy your experience with us!
         </p>
       </div>

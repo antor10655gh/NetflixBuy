@@ -3,15 +3,11 @@ import bgImg from "../../../assets/images/wilder.jpg";
 import { Link } from "react-router-dom";
 
 const BestSeller = () => {
-  const divStyle = {
-    backgroundImage: `url(${bgImg})`,
-  };
-
   const user = JSON.parse(localStorage.getItem("user"));
 
   const [bestSellers, setBestSellers] = useState([]);
 
-  const category = "BestSeller";
+  const category = "Amazon";
 
   useEffect(() => {
     fetch(
@@ -67,7 +63,7 @@ const BestSeller = () => {
             </div>
             <div className="p-6 pt-0">
               <div className="flex justify-end p-3">
-                <Link to={`/login`}>
+                <Link to={`product/${bestSeller?._id}`}>
                   <button className="prim_btn">Buy now</button>
                 </Link>
               </div>

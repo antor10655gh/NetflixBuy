@@ -11,7 +11,7 @@ const SummerPlay = () => {
 
   const [summerPlays, setSummerPlays] = React.useState([]);
 
-  const category = "SummerPlay";
+  const category = "Itunes";
 
   React.useEffect(() => {
     fetch(
@@ -70,7 +70,7 @@ const SummerPlay = () => {
             </div>
             <div className="p-6 pt-0">
               <div className="flex justify-end p-3">
-                <Link to={`/login`}>
+                <Link to={`product/${summerPlay?._id}`}>
                   <button className="prim_btn">Buy now</button>
                 </Link>
               </div>

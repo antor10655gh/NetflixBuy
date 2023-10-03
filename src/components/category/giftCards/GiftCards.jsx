@@ -11,7 +11,7 @@ const GiftCards = () => {
 
   const [giftCards, setGiftCards] = React.useState([]);
 
-  const category = "GiftCards";
+  const category = "Vanilla";
 
   React.useEffect(() => {
     fetch(
@@ -71,7 +71,7 @@ const GiftCards = () => {
             </div>
             <div className="p-6 pt-0">
               <div className="flex justify-end p-3">
-                <Link to={`/login`}>
+                <Link to={`product/${giftCard?._id}`}>
                   <button className="prim_btn">Buy now</button>
                 </Link>
               </div>

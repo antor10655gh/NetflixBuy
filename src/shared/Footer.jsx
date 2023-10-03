@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="text-black">
           <img src={logo} alt="" />
           <p className="py-3">
-            NetflixBuy <br />
+            GCARDBUY <br />
             Providing reliable service since 2020
           </p>
         </div>

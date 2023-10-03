@@ -67,7 +67,7 @@ const SingleProduct = () => {
               </div>
               <div className="h-[2px] bg-[#696969] my-5"></div>
               <div className="flex justify-between items-center">
-                <div>
+                <div className="mr-3">
                   <div className="py-3 flex gap-3">
                     <span className="text-lg lg:text-2xl text-black">
                       {`${product.newPrice}$`}
@@ -79,7 +79,7 @@ const SingleProduct = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Link to="/payment-details">
-                    <button className="px-8 py-2 rounded-md bg-[#8EA406] text-black">
+                    <button className="px-8 py-2 rounded-md bg-[#8EA406] hover:bg-[#a1b909] hover:text-white transition duration-300 text-black">
                       Confirm
                     </button>
                   </Link>

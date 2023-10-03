@@ -7,6 +7,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import logo from "../assets/images/logo.png";
+import CatButton from "./CatButton";
 
 const Header = () => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -28,39 +29,39 @@ const Header = () => {
   const myMenu = [
     {
       name: "Netflix",
-      path: "/category/TrendingProducts",
+      path: "/category/Netflix",
     },
     {
       name: "Razer Gold",
-      path: "/category/GiftCards",
+      path: "/category/RazerGold",
     },
     {
       name: "Amazon",
-      path: "/category/BestSeller",
+      path: "/category/Amazon",
     },
     {
       name: "Binance USDT",
-      path: "/category/GamingGiftcards",
+      path: "/category/BinanceUSDT",
     },
     {
       name: "Vanilla",
-      path: "/category/VideoGames",
+      path: "/category/Vanilla",
     },
     {
       name: "Steam",
-      path: "/category/Subscriptions",
+      path: "/category/Steam",
     },
     {
       name: "Itunes",
-      path: "/category/BestSoftware",
+      path: "/category/Itunes",
     },
     {
       name: "Virtual Mastercard",
-      path: "/category/BestSoftware",
+      path: "/category/VirtualMastercard",
     },
     {
       name: "Walmart",
-      path: "/category/BestSoftware",
+      path: "/category/Walmart",
     },
   ];
 
@@ -97,21 +98,28 @@ const Header = () => {
               <img src={logo} alt="" />
             </Link>
           </Typography>
+          <div className="block lg:hidden">
+            <CatButton />
+          </div>
           <div className="hidden lg:block">{navList}</div>
           <div className="hidden lg:block">
             {user ? (
-              <Link to="/logout" onClick={handleLogOut}>
-                <button className="prim_btn">Logout</button>
-              </Link>
+              <div className="flex items-center">
+                <CatButton />
+                <Link to="/logout" className="prim_btn" onClick={handleLogOut}>
+                  Logout
+                </Link>
+              </div>
             ) : (
-              <>
-                <Link to="/login" className="mr-2">
-                  <button className="prim_btn">Login</button>
+              <div className="flex items-center">
+                <CatButton />
+                <Link to="/login" className="mr-2 prim_btn">
+                  Login
                 </Link>
-                <Link to="/signup">
-                  <button className="prim_btn">Signup</button>
+                <Link to="/signup" className="prim_btn">
+                  Signup
                 </Link>
-              </>
+              </div>
             )}
           </div>
           <IconButton
@@ -162,7 +170,7 @@ const Header = () => {
             ) : (
               <>
                 <Link to="/login">
-                  <button className="prim_btn">Login</button>
+                  <button className="prim_btn mr-2">Login</button>
                 </Link>
                 <Link to="/signup">
                   <button className="prim_btn">Signup</button>

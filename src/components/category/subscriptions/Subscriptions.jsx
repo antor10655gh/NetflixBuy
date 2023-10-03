@@ -11,7 +11,7 @@ const Subscriptions = () => {
 
   const [subscriptions, setSubscriptions] = React.useState([]);
 
-  const category = "Subscriptions";
+  const category = "Steam";
 
   React.useEffect(() => {
     fetch(
@@ -70,7 +70,7 @@ const Subscriptions = () => {
             </div>
             <div className="p-6 pt-0">
               <div className="flex justify-end p-3">
-                <Link to={`/login`}>
+                <Link to={`product/${subscription?._id}`}>
                   <button className="prim_btn">Buy now</button>
                 </Link>
               </div>

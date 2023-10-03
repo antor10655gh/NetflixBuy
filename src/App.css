@@ -11,6 +11,12 @@ body {
 }
 
 /* Stye for card */
+.bgImage {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+}
+
 .card-container {
   display: grid;
   gap: 30px;

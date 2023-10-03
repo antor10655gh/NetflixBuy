@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div className="bg-[#1D232A] text-[#9EA5B1] py-6">
       <div className="px-12 py-5">
-        <h1 className="text-xl lg:text-3xl pb-3">Welcome to Netflixbuy!</h1>
+        <h1 className="text-xl lg:text-3xl pb-3">Welcome to GCardBuy!</h1>
         <p className="text-base lg:text-lg leading-[10px]">
           We are a dedicated and inventive organization committed to delivering
           exceptional solutions in the realm of artificial intelligence and
@@ -16,7 +16,7 @@ const About = () => {
       <div className="px-12 py-5">
         <h1 className="text-xl lg:text-3xl pb-3">Who We Are?</h1>
         <p className="text-base lg:text-lg leading-[10px]">
-          At Netflixbuy, we constitute a group of enthusiastic and innovative
+          At GCardBuy, we constitute a group of enthusiastic and innovative
           professionals with varied backgrounds, encompassing computer science,
           engineering, data science, and business development. Our collective
           goal is to transform industries through the progress facilitated by
@@ -63,7 +63,7 @@ const About = () => {
         </p>
       </div>
       <div className="px-12 py-5">
-        <h1 className="text-xl lg:text-3xl pb-3">Why Choose Netflixbuy?</h1>
+        <h1 className="text-xl lg:text-3xl pb-3">Why Choose GCardBuy?</h1>
         <p className="text-base lg:text-lg leading-[10px]">
           1. Expertise: Our team consists of experienced professionals who
           possess a profound knowledge of AI and machine learning technologies.
@@ -74,7 +74,7 @@ const About = () => {
           requirements. Your objectives are our top priority, ensuring the
           success of our collaborations. <br />
           <br /> 3. Innovation: Innovation is the driving force behind our
-          approach at Netflixbuy. We wholeheartedly embrace creativity and
+          approach at GCardBuy. We wholeheartedly embrace creativity and
           unconventional thinking to deliver solutions that distinguish
           themselves in a competitive landscape. <br />
           <br /> 4. Client-Centric Focus: Establishing robust and enduring
@@ -88,7 +88,7 @@ const About = () => {
         </p>
         <p className="text-base lg:text-lg leading-[10px] pt-8">
           Let's Embark on an AI Journey Together. Whether you're a startup, an
-          enterprise, or a research institution, Netflixbuy is your trusted
+          enterprise, or a research institution, GCardBuy is your trusted
           partner in unlocking the true potential of artificial intelligence.
           Join us on this transformative journey as we shape the future through
           innovation, expertise, and collaboration. Contact us today to explore

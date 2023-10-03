@@ -11,7 +11,7 @@ const BestSofware = () => {
 
   const [bestSofwares, setBestSofwares] = React.useState([]);
 
-  const category = "BestSoftware";
+  const category = "BinanceUSDT";
 
   React.useEffect(() => {
     fetch(
@@ -70,7 +70,7 @@ const BestSofware = () => {
             </div>
             <div className="p-6 pt-0">
               <div className="flex justify-end p-3">
-                <Link to={`/login`}>
+                <Link to={`product/${bestSofware?._id}`}>
                   <button className="prim_btn">Buy now</button>
                 </Link>
               </div>
