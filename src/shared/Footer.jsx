@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="px-5">
+    <div className="px-5 bg-gray-100">
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center py-10 gap-5">
-        <div className="text-white">
+        <div className="text-black">
           <img src={logo} alt="" />
           <p className="py-3">
             NetflixBuy <br />
@@ -14,7 +14,7 @@ const Footer = () => {
           </p>
         </div>
         <div>
-          <h1 className="text-white">COMPANY</h1>
+          <h1 className="text-black">COMPANY</h1>
           <p className="text-gray-600 group">
             <Link
               to="/about"
@@ -25,7 +25,7 @@ const Footer = () => {
           </p>
         </div>
         <div>
-          <h1 className="text-white">LEGAL</h1>
+          <h1 className="text-black">LEGAL</h1>
           <p className="text-gray-600 group">
             <Link
               to="/terms"

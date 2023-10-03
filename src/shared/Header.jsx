@@ -6,6 +6,7 @@ import {
   Typography,
   IconButton,
 } from "@material-tailwind/react";
+import logo from "../assets/images/logo.png";
 
 const Header = () => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -26,31 +27,39 @@ const Header = () => {
 
   const myMenu = [
     {
-      name: "Trending Products",
+      name: "Netflix",
       path: "/category/TrendingProducts",
     },
     {
-      name: "Gift Cards",
+      name: "Razer Gold",
       path: "/category/GiftCards",
     },
     {
-      name: "Best Seller",
+      name: "Amazon",
       path: "/category/BestSeller",
     },
     {
-      name: "Gaming Giftcards",
+      name: "Binance USDT",
       path: "/category/GamingGiftcards",
     },
     {
-      name: "Video Games",
+      name: "Vanilla",
       path: "/category/VideoGames",
     },
     {
-      name: "Subscriptions",
+      name: "Steam",
       path: "/category/Subscriptions",
     },
     {
-      name: "Best Softwares",
+      name: "Itunes",
+      path: "/category/BestSoftware",
+    },
+    {
+      name: "Virtual Mastercard",
+      path: "/category/BestSoftware",
+    },
+    {
+      name: "Walmart",
       path: "/category/BestSoftware",
     },
   ];
@@ -66,7 +75,7 @@ const Header = () => {
         >
           <Link
             to={item.path}
-            className="flex items-center text-lg text-[#A6ADBA] hover:text-[#dc2626] focus:text-[#dc2626] transition duration-300 ease-in-out"
+            className="flex items-center text-lg text-[#696969] hover:text-[#8EA406] focus:text-[#8EA406] transition duration-300 ease-in-out"
           >
             {item.name}
           </Link>
@@ -77,7 +86,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar className="sticky top-0 z-40 h-max max-w-full rounded-none py-2 px-0 lg:py-4 shadow-none bg-transparent border-0">
+      <Navbar className="sticky top-0 z-40 h-max max-w-full rounded-none py-2 px-0 lg:py-4 shadow-none bg-gray-100 border-0">
         <div className="px-8 flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"
@@ -85,7 +94,7 @@ const Header = () => {
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             <Link to="/">
-              <h1 className="text-xl text-[#DC2626]">NefflixBuy</h1>
+              <img src={logo} alt="" />
             </Link>
           </Typography>
           <div className="hidden lg:block">{navList}</div>
@@ -95,9 +104,14 @@ const Header = () => {
                 <button className="prim_btn">Logout</button>
               </Link>
             ) : (
-              <Link to="/login">
-                <button className="prim_btn">Login</button>
-              </Link>
+              <>
+                <Link to="/login" className="mr-2">
+                  <button className="prim_btn">Login</button>
+                </Link>
+                <Link to="/signup">
+                  <button className="prim_btn">Signup</button>
+                </Link>
+              </>
             )}
           </div>
           <IconButton
@@ -146,9 +160,14 @@ const Header = () => {
                 <button className="prim_btn">Logout</button>
               </Link>
             ) : (
-              <Link to="/login">
-                <button className="prim_btn">Login</button>
-              </Link>
+              <>
+                <Link to="/login">
+                  <button className="prim_btn">Login</button>
+                </Link>
+                <Link to="/signup">
+                  <button className="prim_btn">Signup</button>
+                </Link>
+              </>
             )}
           </div>
         </MobileNav>

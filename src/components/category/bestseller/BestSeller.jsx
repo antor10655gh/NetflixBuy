@@ -31,18 +31,15 @@ const BestSeller = () => {
   }, [category]);
 
   return (
-    <div
-      className="px-5 py-12 bg-no-repeat bg-cover bg-center"
-      style={divStyle}
-    >
-      <div className="text-white text-center lg:text-start pb-12">
+    <div className="px-5 py-12">
+      <div className="text-black text-center lg:text-start pb-12">
         <h1 className="text-3xl py-2">Best Sellers</h1>
         <p>Browse the most popular video games on the platform.</p>
       </div>
       <div className="card-container">
         {bestSellers?.map((bestSeller) => (
           <div className="card relative flex w-full lg:w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-            <div className="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+            <div className="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-black shadow-lg shadow-blue-gray-500/40">
               <img
                 src={`https://netflixbuy-server-production.up.railway.app/${bestSeller?.productImg}`}
                 alt="img-blur-shadow"
@@ -51,18 +48,18 @@ const BestSeller = () => {
               />
             </div>
             <div className="p-6">
-              <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-white antialiased">
+              <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-black antialiased">
                 {bestSeller?.name.slice(0, 25) + " ..."}
               </h5>
               <div className="card-content">
-                <span className="bg-red-500 text-white px-2 my-3 rounded-md">
+                <span className="bg-[#8ea406] text-black px-2 my-3 rounded-md">
                   {bestSeller?.subCategory}
                 </span>
                 <div className="py-3 flex gap-3">
-                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
+                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-black px-5">
                     {`${bestSeller.newPrice}$`}
                   </span>
-                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
+                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-black px-5 line-through">
                     {`${bestSeller?.oldPrice}$`}
                   </span>
                 </div>
@@ -70,15 +67,9 @@ const BestSeller = () => {
             </div>
             <div className="p-6 pt-0">
               <div className="flex justify-end p-3">
-                {user ? (
-                  <Link to={`/product/${bestSeller?._id}`}>
-                    <button className="prim_btn">Buy now</button>
-                  </Link>
-                ) : (
-                  <Link to={`/login`}>
-                    <button className="prim_btn">Buy now</button>
-                  </Link>
-                )}
+                <Link to={`/login`}>
+                  <button className="prim_btn">Buy now</button>
+                </Link>
               </div>
             </div>
           </div>

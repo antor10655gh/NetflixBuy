@@ -31,11 +31,8 @@ const GiftCards = () => {
   }, [category]);
 
   return (
-    <div
-      className="px-5 py-12 bg-no-repeat bg-cover bg-center"
-      style={divStyle}
-    >
-      <div className="text-white text-center lg:text-start pb-12">
+    <div className="px-5 py-12">
+      <div className="text-black text-center lg:text-start pb-12">
         <h1 className="text-3xl py-2">Giftcards</h1>
         <p>
           Make buying games on Steam easier, faster, and safer with Steam
@@ -46,7 +43,7 @@ const GiftCards = () => {
       <div className="card-container">
         {giftCards?.map((giftCard) => (
           <div className="card relative flex w-full lg:w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-            <div className="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+            <div className="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-black shadow-lg shadow-blue-gray-500/40">
               <img
                 src={`https://netflixbuy-server-production.up.railway.app/${giftCard?.productImg}`}
                 alt="img-blur-shadow"
@@ -55,18 +52,18 @@ const GiftCards = () => {
               />
             </div>
             <div className="p-6">
-              <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-white antialiased">
+              <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-black antialiased">
                 {giftCard?.name.slice(0, 25) + " ..."}
               </h5>
               <div className="card-content">
-                <span className="bg-red-500 text-white px-2 my-3 rounded-md">
+                <span className="bg-[#8ea406] text-black px-2 my-3 rounded-md">
                   {giftCard?.subCategory}
                 </span>
                 <div className="py-3 flex gap-3">
-                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5">
+                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-black px-5">
                     {`${giftCard.newPrice}$`}
                   </span>
-                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-white px-5 line-through">
+                  <span className="text-lg border-[1px] border-gray px-2 rounded-full text-black px-5 line-through">
                     {`${giftCard?.oldPrice}$`}
                   </span>
                 </div>
@@ -74,15 +71,9 @@ const GiftCards = () => {
             </div>
             <div className="p-6 pt-0">
               <div className="flex justify-end p-3">
-                {user ? (
-                  <Link to={`/product/${giftCard?._id}`}>
-                    <button className="prim_btn">Buy now</button>
-                  </Link>
-                ) : (
-                  <Link to={`/login`}>
-                    <button className="prim_btn">Buy now</button>
-                  </Link>
-                )}
+                <Link to={`/login`}>
+                  <button className="prim_btn">Buy now</button>
+                </Link>
               </div>
             </div>
           </div>

@@ -12,5 +12,5 @@ export default function App() {
       setUser(true);
     }, 2500);
   });
-  return <div className="bg-black">{user ? <Layout /> : <Loader />}</div>;
+  return <div>{user ? <Layout /> : <Loader />}</div>;
 }

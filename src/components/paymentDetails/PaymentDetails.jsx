@@ -312,7 +312,7 @@ const PaymentDetails = () => {
   };
 
   return (
-    <div className="bg-no-repeat bg-cover bg-center lg:py-20" style={divStyle}>
+    <div className="lg:py-20">
       <div className="lg:w-[400px] mx-auto bg-[#1D232A] p-8 rounded-lg">
         <form>
           <div className="my-5">
@@ -502,7 +502,7 @@ const PaymentDetails = () => {
           </div>
           <div className="mt-3">
             <button
-              className="mt-6 block w-full select-none rounded-lg bg-[#dc2626] hover:bg-[#1d232a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-sm hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              className="mt-6 block w-full select-none rounded-lg bg-[#8EA406] hover:bg-[#1d232a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-sm hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
               onClick={handleClick}
             >

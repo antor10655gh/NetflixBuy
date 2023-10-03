@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div className="heroBg w-full h-screen">
       <div className="bg-gray-900 w-full h-screen opacity-75 flex flex-col justify-start items-center lg:flex-row lg:justify-center lg:items-center">
-        <div className="lg:w-2/3 flex flex-col lg:flex-row lg:justify-center lg:items-center h-1/2 lg:h-screen gap-12 mt-20">
+        <div className="lg:w-2/3 flex flex-col lg:flex-row lg:justify-center lg:items-center h-1/2 lg:h-screen gap-12 mt-20 lg:mt-0">
           <img
             className="w-full lg:w-1/2 rounded-md p-5 lg:p-0"
             src={bgImg}

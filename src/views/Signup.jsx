@@ -95,10 +95,7 @@ const Signup = () => {
   };
 
   return (
-    <div
-      className="h-[100vh] w-full pt-5 lg:pt-10 flex justify-center items-center bg-no-repeat bg-cover bg-center"
-      style={divStyle}
-    >
+    <div className="h-[100vh] w-full pt-5 lg:pt-10 flex justify-center items-center">
       <div className="form-card md:w-[400px] lg:w-[400px] relative flex flex-col rounded-xl bg-[#1D232A] py-5 px-8 bg-clip-border text-gray-700 shadow-none">
         <div className="flex flex-col items-center">
           <h4 className="block font-sans text-3xl font-semibold leading-snug tracking-normal text-white antialiased">
@@ -182,7 +179,7 @@ const Signup = () => {
             </div>
           </div>
           <button
-            className="mt-6 block w-full md:w-[335px] lg:w-[335px] select-none rounded-lg bg-[#dc2626] hover:bg-[#1d232a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-sm hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="mt-6 block w-full md:w-[335px] lg:w-[335px] select-none rounded-lg bg-[#8EA406] hover:bg-[#1d232a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-sm hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="submit"
             data-ripple-light="true"
           >
