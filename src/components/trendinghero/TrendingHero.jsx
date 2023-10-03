@@ -21,7 +21,7 @@ const TrendingHero = () => {
               gift cards, and more. Buy bestselling games, and other digital
               products at the best possible price.
             </p>
-            <Link to="/category/TrendingProducts" className="prim_btn">
+            <Link to="/category/Netflix" className="prim_btn">
               See all
             </Link>
           </div>
