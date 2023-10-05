@@ -68,24 +68,6 @@ const CatButton = () => {
           </MenuList>
         </Menu>
       </div>
-      <div className="flex gap-3 mr-2 lg:hidden">
-        <Menu placement="bottom">
-          <MenuHandler>
-            <Button className="flex items-center">
-              <FaList />
-            </Button>
-          </MenuHandler>
-          <MenuList>
-            {myMenu.map((item, index) => {
-              return (
-                <MenuItem key={index}>
-                  <Link to={item.path}>{item.name}</Link>
-                </MenuItem>
-              );
-            })}
-          </MenuList>
-        </Menu>
-      </div>
     </>
   );
 };

@@ -76,7 +76,7 @@ const Header = () => {
         >
           <Link
             to={item.path}
-            className="text-[17px] flex items-center text-[#696969] hover:text-[#8EA406] focus:text-[#8EA406] transition duration-300 ease-in-out"
+            className="flex items-center text-[#696969] hover:text-[#8EA406] focus:text-[#8EA406] transition duration-300 ease-in-out"
           >
             {item.name}
           </Link>
@@ -112,7 +112,9 @@ const Header = () => {
               </div>
             ) : (
               <div className="flex items-center">
-                <CatButton />
+                <div>
+                  <CatButton />
+                </div>
                 <Link
                   to="/login"
                   className="hover:text-[#8EA406] transition duration-300"
@@ -178,14 +180,14 @@ const Header = () => {
               <>
                 <Link
                   to="/login"
-                  className="hover:text-[#8EA406] transition duration-300"
+                  className="text-black hover:text-[#8EA406] transition duration-300"
                 >
                   Login
                 </Link>
-                <span className="mx-2">/</span>
+                <span className="mx-2 text-black">/</span>
                 <Link
                   to="/signup"
-                  className="hover:text-[#8EA406] transition duration-300"
+                  className="text-black hover:text-[#8EA406] transition duration-300"
                 >
                   Signup
                 </Link>
