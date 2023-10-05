@@ -19,7 +19,7 @@ body {
 
 .card-container {
   display: grid;
-  gap: 30px;
+  place-items: center;
   grid-template-columns: repeat(3, 1fr);
 }
 

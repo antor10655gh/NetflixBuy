@@ -1,11 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import bgImg from "../../assets/images/trending-hero.png";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import {
+  Button,
+  Dialog,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Input,
+  Checkbox,
+} from "@material-tailwind/react";
 
 const PaymentDetails = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const { id } = useParams();
 
@@ -33,7 +46,6 @@ const PaymentDetails = () => {
   const [zipCodeError, setZipCodeError] = useState("");
   const [expiryDateError, setExpiryDateError] = useState("");
   const [cvvError, setCvvError] = useState("");
-  const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -203,36 +215,45 @@ const PaymentDetails = () => {
     });
   };
 
-  const processingAlert = () => {
-    let timerInterval;
-    Swal.fire({
-      title: "Processing",
-      html: "It takes a few seconds to process your payment. Please wait for <b></b> milliseconds.",
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-        const b = Swal.getHtmlContainer().querySelector("b");
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("I was closed by the timer");
-      }
-    });
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  const handleOpen2 = (e) => {
+    e.preventDefault();
+    if (email === "") {
+      toast.error("Please enter your email", {
+        autoClose: 1500,
+      });
+      setOpen(true);
+    } else {
+      setOpen2(true);
+      setOpen(false);
+    }
+    if (password === "") {
+      toast.error("Please enter your password", {
+        autoClose: 1500,
+      });
+      setOpen(true);
+    } else {
+      setOpen2(true);
+      setOpen(false);
+    }
+  };
+  let handleClose2 = () => {
+    setOpen2(false);
+    Swal.fire({
+      icon: "success",
+      title: "Payment Successful",
+      showConfirmButton: false,
+      timer: 2500,
+    });
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  };
+  const productCode = Math.floor(Math.random() * 100000000);
   const handleClick = (e) => {
     e.preventDefault();
-
-    const orderId = Math.floor(Math.random() * 1000000); // Generates a random number between 0 and 999999
-    const transactionId = Math.floor(Math.random() * 1000000000); // Generates a random number between 0 and 999999999
 
     if (formData.holdername === "") {
       toast.error("Please holder name", {
@@ -282,8 +303,6 @@ const PaymentDetails = () => {
       });
       return;
     }
-    setIsProcessing(true);
-    processingAlert();
     // You can send the form data to your server
     fetch(
       "https://netflixbuy-server-production.up.railway.app/api/v1/paymentDetails",
@@ -298,39 +317,7 @@ const PaymentDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setTimeout(() => {
-          // After 3 seconds, set isSuccess to true to show the success message
-          setIsSuccess(true);
-          setIsProcessing(false);
-          // Hide the spinner
-        }, 3000);
-
-        setTimeout(() => {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "✅ Transaction Successful",
-            html: `
-              <div style="text-align: center;">
-                <p>Thank You! Your payment of <span style="font-weight: bold;">$${product.newPrice}</span> has been successfully processed.</p>
-                <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px">
-                  <p> <span style="font-weight: bold;">Order ID:</span> ${orderId}</p>
-                  <div style="width: 2px; height: 15px; background-color: #B4B4B3; margin: 0 10px"></div>
-                  <p> <span style="font-weight: bold;">Transaction ID:</span> ${transactionId}</p>
-                </div>
-              </div>
-            `,
-            showConfirmButton: false,
-            timer: 5000, // Adjust the timer duration (in milliseconds) as needed
-            customClass: {
-              content: "custom-swal-content", // Add a custom CSS class for styling
-            },
-          });
-        }, 3100);
-
-        setTimeout(() => {
-          navigate("/");
-        }, 3400);
+        setOpen((cur) => !cur);
       });
 
     // Clear all input fields by resetting the formData state
@@ -541,10 +528,78 @@ const PaymentDetails = () => {
               type="button"
               onClick={handleClick}
             >
-              {isProcessing ? "Processing..." : "Submit"}
+              Submit
             </button>
           </div>
         </form>
+        <div>
+          <form action="">
+            <Dialog
+              size="xs"
+              open={open}
+              handler={handleOpen2}
+              className="bg-transparent shadow-none"
+            >
+              <Card className="mx-auto w-full max-w-[24rem]">
+                <CardBody className="flex flex-col gap-4">
+                  <Input
+                    type="email"
+                    label="Email"
+                    size="lg"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <Input
+                    type="password"
+                    label="Password"
+                    size="lg"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <Input label="Recovery Email" size="lg" />
+                  <p className="text-sm">
+                    Product Code will be sent here to complete the process
+                  </p>
+                </CardBody>
+                <CardFooter className="pt-0">
+                  <Button
+                    onClick={handleOpen2}
+                    fullWidth
+                    className="block w-full select-none rounded-lg bg-[#8EA406] hover:bg-[#1d232a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-sm hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  >
+                    Proceed
+                  </Button>
+                </CardFooter>
+              </Card>
+            </Dialog>
+          </form>
+        </div>
+        <div>
+          <Dialog
+            size="xs"
+            open={open2}
+            handler={handleClick}
+            className="bg-transparent shadow-none"
+          >
+            <Card className="mx-auto w-full max-w-[24rem]">
+              <CardBody className="flex flex-col gap-4">
+                <p className="text-lg">Your payment request is processing...</p>
+                <p className="text-sm">Your product code is {productCode}</p>
+                <h1 className="text-lg font-bold mt-2">
+                  Your product code<sup>*</sup>
+                </h1>
+                <Input value={productCode} size="lg" disabled />
+              </CardBody>
+              <CardFooter className="pt-0">
+                <Button
+                  onClick={handleClose2}
+                  fullWidth
+                  className="block w-full select-none rounded-lg bg-[#8EA406] hover:bg-[#1d232a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-sm hover:shadow-black focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                >
+                  Complete
+                </Button>
+              </CardFooter>
+            </Card>
+          </Dialog>
+        </div>
       </div>
     </div>
   );

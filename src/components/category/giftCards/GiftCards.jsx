@@ -42,8 +42,8 @@ const GiftCards = () => {
       </div>
       <div className="card-container">
         {giftCards?.map((giftCard) => (
-          <div className="card relative flex w-full lg:w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-            <div className="relative mx-4 -mt-6 h-full lg:h-96 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-black shadow-lg shadow-blue-gray-500/40">
+          <div className="card relative flex w-full lg:w-72 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div className="relative mx-4 -mt-6 h-full lg:h-52 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-black shadow-lg shadow-blue-gray-500/40">
               <img
                 src={`https://netflixbuy-server-production.up.railway.app/${giftCard?.productImg}`}
                 alt="img-blur-shadow"
@@ -52,7 +52,7 @@ const GiftCards = () => {
               />
             </div>
             <div className="p-6">
-              <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-black antialiased">
+              <h5 className="mb-2 block font-sans text-lg font-semibold leading-snug tracking-normal text-black antialiased">
                 {giftCard?.name.slice(0, 25) + " ..."}
               </h5>
               <div className="card-content">
@@ -69,7 +69,7 @@ const GiftCards = () => {
                 </div>
               </div>
             </div>
-            <div className="p-6 pt-0">
+            <div>
               <div className="flex justify-end p-3">
                 <Link to={`product/${giftCard?._id}`}>
                   <button className="prim_btn">Buy now</button>

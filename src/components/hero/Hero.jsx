@@ -17,12 +17,8 @@ const Hero = () => {
               Entertainment is here!
             </h1>
             <p className="lg:leading-[80px]">
-              Tons of hot deals on video games, software, various gift cards,
-              and more!
+              The most trusted gift card website in the world
             </p>
-            <Link to="/category/TrendingProducts" className="prim_btn">
-              Get started
-            </Link>
           </div>
         </div>
       </div>

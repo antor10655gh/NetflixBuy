@@ -12,17 +12,17 @@ import AllProducts from "../views/AllProducts";
 import ScrollToTop from "../shared/ScrollToTop";
 
 const Routers = () => {
-  useEffect(() => {
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-    };
+  // useEffect(() => {
+  //   const handleContextMenu = (e) => {
+  //     e.preventDefault();
+  //   };
 
-    document.addEventListener("contextmenu", handleContextMenu);
+  //   document.addEventListener("contextmenu", handleContextMenu);
 
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("contextmenu", handleContextMenu);
+  //   };
+  // }, []);
 
   return (
     <>

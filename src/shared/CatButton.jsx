@@ -50,7 +50,7 @@ const CatButton = () => {
   ];
   return (
     <>
-      <div className="flex gap-3 mr-2 hidden lg:block">
+      <div className="flex gap-3 mr-4 hidden lg:block">
         <Menu placement="bottom">
           <MenuHandler>
             <Button className="flex items-center">

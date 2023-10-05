@@ -72,11 +72,11 @@ const Header = () => {
           as="li"
           variant="small"
           color="blue-gray"
-          className="p-1 font-normal"
+          className="font-normal"
         >
           <Link
             to={item.path}
-            className="flex items-center text-lg text-[#696969] hover:text-[#8EA406] focus:text-[#8EA406] transition duration-300 ease-in-out"
+            className="text-[17px] flex items-center text-[#696969] hover:text-[#8EA406] focus:text-[#8EA406] transition duration-300 ease-in-out"
           >
             {item.name}
           </Link>
@@ -95,7 +95,7 @@ const Header = () => {
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             <Link to="/">
-              <img src={logo} alt="" />
+              <img src={logo} alt="" className="w-34 h-12" />
             </Link>
           </Typography>
           <div className="block lg:hidden">
@@ -113,10 +113,17 @@ const Header = () => {
             ) : (
               <div className="flex items-center">
                 <CatButton />
-                <Link to="/login" className="mr-2 prim_btn">
+                <Link
+                  to="/login"
+                  className="hover:text-[#8EA406] transition duration-300"
+                >
                   Login
                 </Link>
-                <Link to="/signup" className="prim_btn">
+                <span className="mx-2">/</span>
+                <Link
+                  to="/signup"
+                  className="hover:text-[#8EA406] transition duration-300"
+                >
                   Signup
                 </Link>
               </div>
@@ -169,11 +176,18 @@ const Header = () => {
               </Link>
             ) : (
               <>
-                <Link to="/login">
-                  <button className="prim_btn mr-2">Login</button>
+                <Link
+                  to="/login"
+                  className="hover:text-[#8EA406] transition duration-300"
+                >
+                  Login
                 </Link>
-                <Link to="/signup">
-                  <button className="prim_btn">Signup</button>
+                <span className="mx-2">/</span>
+                <Link
+                  to="/signup"
+                  className="hover:text-[#8EA406] transition duration-300"
+                >
+                  Signup
                 </Link>
               </>
             )}
