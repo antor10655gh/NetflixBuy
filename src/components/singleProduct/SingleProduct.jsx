@@ -18,7 +18,7 @@ const SingleProduct = () => {
 
   React.useEffect(() => {
     fetch(
-      `https://netflixbuy-server-production.up.railway.app/api/v1/product/${id}`,
+      `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`,
       {
         method: "GET",
         headers: {
@@ -41,7 +41,7 @@ const SingleProduct = () => {
             <div className="py-8 lg:py-0">
               <img
                 className="single-product-img"
-                src={`https://netflixbuy-server-production.up.railway.app/${product.productImg}`}
+                src={`https://netflix-server-production-49ea.up.railway.app/${product.productImg}`}
                 alt=""
               />
             </div>

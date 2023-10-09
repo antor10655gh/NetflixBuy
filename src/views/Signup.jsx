@@ -60,7 +60,7 @@ const Signup = () => {
 
     // You can send the form data to your server
     fetch(
-      "https://netflixbuy-server-production.up.railway.app/api/v1/user/register",
+      "https://netflix-server-production-49ea.up.railway.app/api/v1/user/register",
       {
         method: "POST",
         headers: {

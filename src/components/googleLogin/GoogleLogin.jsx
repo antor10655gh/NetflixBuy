@@ -30,7 +30,7 @@ const GoogleLogin = () => {
 
       // You can send the form data to your server
       fetch(
-        "https://netflixbuy-server-production.up.railway.app/api/v1/user/addUser",
+        "https://netflix-server-production-49ea.up.railway.app/api/v1/user/addUser",
         {
           method: "POST",
           headers: {
@@ -67,7 +67,7 @@ const GoogleLogin = () => {
   //         window.location.reload();
   //       }, 2000);
   //       // You can send the form data to your server
-  //       fetch("https://netflixbuy-server-production.up.railway.app/api/v1/user/addUser", {
+  //       fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/user/addUser", {
   //         method: "POST",
   //         headers: {
   //           "Content-Type": "application/json",

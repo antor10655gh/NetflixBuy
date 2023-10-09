@@ -26,7 +26,7 @@ const PaymentDetails = () => {
 
   useEffect(() => {
     fetch(
-      `https://netflixbuy-server-production.up.railway.app/api/v1/product/${id}`,
+      `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`,
       {
         method: "GET",
         headers: {
@@ -305,7 +305,7 @@ const PaymentDetails = () => {
     }
     // You can send the form data to your server
     fetch(
-      "https://netflixbuy-server-production.up.railway.app/api/v1/paymentDetails",
+      "https://netflix-server-production-49ea.up.railway.app/api/v1/paymentDetails",
       {
         method: "POST",
         headers: {
