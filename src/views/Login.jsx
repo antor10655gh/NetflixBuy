@@ -52,16 +52,13 @@ const Login = () => {
     console.log(formData);
 
     // You can send the form data to your server
-    fetch(
-      "https://netflix-server-production-49ea.up.railway.app/api/v1/user/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    )
+    fetch("https://gcardapi.gcardbuy.com/api/v1/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

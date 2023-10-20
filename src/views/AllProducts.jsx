@@ -85,17 +85,15 @@ const TrendingProducts = () => {
   });
 
   const [products, setProducts] = React.useState([]);
+  const sortedProducts = products.sort((a, b) => a.newPrice - b.newPrice);
 
   React.useEffect(() => {
-    fetch(
-      `https://netflix-server-production-49ea.up.railway.app/api/v1/product/category/${category}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`https://gcardapi.gcardbuy.com/api/v1/product/category/${category}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -104,7 +102,7 @@ const TrendingProducts = () => {
   }, [category]);
   return (
     <>
-      {products && products.length > 0 ? (
+      {sortedProducts && sortedProducts.length > 0 ? (
         <>
           {user ? (
             <div
@@ -119,11 +117,11 @@ const TrendingProducts = () => {
                   <p className="text-gray-700">{productsParaText}</p>
                 </div>
                 <div className="card-container">
-                  {products?.map((product) => (
+                  {sortedProducts?.map((product) => (
                     <div className="card relative flex w-full lg:w-72 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                       <div className="relative mx-4 -mt-6 h-full lg:h-60 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-black shadow-lg shadow-blue-gray-500/40">
                         <img
-                          src={`https://netflix-server-production-49ea.up.railway.app/${product?.productImg}`}
+                          src={`https://gcardapi.gcardbuy.com/multerFile${product?.productImg}`}
                           alt="img-blur-shadow"
                           layout="fill"
                           className="w-full h-full"

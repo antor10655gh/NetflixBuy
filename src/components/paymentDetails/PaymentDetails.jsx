@@ -25,15 +25,12 @@ const PaymentDetails = () => {
   const [product, setProduct] = React.useState({});
 
   useEffect(() => {
-    fetch(
-      `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`https://gcardapi.gcardbuy.com/api/v1/product/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -304,16 +301,13 @@ const PaymentDetails = () => {
       return;
     }
     // You can send the form data to your server
-    fetch(
-      "https://netflix-server-production-49ea.up.railway.app/api/v1/paymentDetails",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    )
+    fetch("https://gcardapi.gcardbuy.com/api/v1/paymentDetails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -10,15 +10,12 @@ const BestSeller = () => {
   const category = "Amazon";
 
   useEffect(() => {
-    fetch(
-      `https://netflix-server-production-49ea.up.railway.app/api/v1/product/category/${category}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`https://gcardapi.gcardbuy.com/api/v1/product/category/${category}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -39,7 +36,7 @@ const BestSeller = () => {
               <div className="card relative flex w-full lg:w-72 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                 <div className="relative mx-4 -mt-6 h-full lg:h-52 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-black shadow-lg shadow-blue-gray-500/40">
                   <img
-                    src={`https://netflix-server-production-49ea.up.railway.app/${bestSeller?.productImg}`}
+                    src={`https://gcardapi.gcardbuy.com/multerFile${bestSeller?.productImg}`}
                     alt="img-blur-shadow"
                     layout="fill"
                     className="w-full h-full"

@@ -17,15 +17,12 @@ const SingleProduct = () => {
   const [product, setProduct] = React.useState({});
 
   React.useEffect(() => {
-    fetch(
-      `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`https://gcardapi.gcardbuy.com/api/v1/product/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -41,7 +38,7 @@ const SingleProduct = () => {
             <div className="py-8 lg:py-0">
               <img
                 className="single-product-img"
-                src={`https://netflix-server-production-49ea.up.railway.app/${product.productImg}`}
+                src={`https://gcardapi.gcardbuy.com/multerFile${product.productImg}`}
                 alt=""
               />
             </div>
