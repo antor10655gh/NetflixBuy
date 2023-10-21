@@ -240,8 +240,8 @@ const PaymentDetails = () => {
     setOpen2(false);
     let timerInterval;
     Swal.fire({
-      title: "Your payment is processing",
-      html: "I will take few <b></b> milliseconds.",
+      title: "Your payment is processing...",
+      html: "It will take few <b></b> seconds.",
       timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
@@ -257,7 +257,7 @@ const PaymentDetails = () => {
     }).then((result) => {
       /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("I was closed by the timer");
+        console.log("It was closed by the timer");
       }
     });
     setTimeout(() => {
