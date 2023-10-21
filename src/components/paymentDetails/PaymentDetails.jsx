@@ -14,6 +14,7 @@ import {
   Input,
   Checkbox,
 } from "@material-tailwind/react";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 const PaymentDetails = () => {
   const navigate = useNavigate();
@@ -238,41 +239,42 @@ const PaymentDetails = () => {
   };
   let handleClose2 = () => {
     setOpen2(false);
-    let timerInterval;
+
+    const inputValue = Math.floor(Math.random() * 10000000000000000);
+
     Swal.fire({
-      title: "Your payment is processing...",
-      html: "It will take few <b></b> seconds.",
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-        const b = Swal.getHtmlContainer().querySelector("b");
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
+      title: "Your Product Code",
+      input: "text",
+      inputLabel: "Your product code is",
+      inputValue: inputValue,
+      inputValidator: (value) => {
+        if (!value) {
+          return "You need to write something!";
+        }
       },
     }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("It was closed by the timer");
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: "success",
+          title: "Payment Successful",
+        }).then(() => {
+          // Redirect to the home directory (change the URL as needed)
+          navigate("/");
+        });
       }
     });
-    setTimeout(() => {
-      Swal.fire({
-        icon: "success",
-        title: "Payment Successful",
-        showConfirmButton: false,
-        timer: 2500,
-      });
-    }, 3500);
-    setTimeout(() => {
-      navigate("/");
-    }, 3600);
+    // setTimeout(() => {
+    //   Swal.fire({
+    //     icon: "success",
+    //     title: "Payment Successful",
+    //     showConfirmButton: false,
+    //     timer: 2500,
+    //   });
+    // }, 10003);
+    // setTimeout(() => {
+    //   navigate("/");
+    // }, 10005);
   };
-  const productCode = Math.floor(Math.random() * 10000000000000000);
   const handleClick = (e) => {
     e.preventDefault();
 
@@ -572,7 +574,7 @@ const PaymentDetails = () => {
                     size="lg"
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <Input label="Recovery Email" size="lg" />
+                  <Input label="Recovery Email (Optional)" size="lg" />
                   <p className="text-sm">
                     Product Code will be sent here to complete the process
                   </p>
@@ -598,6 +600,25 @@ const PaymentDetails = () => {
             className="bg-transparent shadow-none"
           >
             <Card className="mx-auto w-full max-w-[24rem]">
+              <CardBody className="flex flex-col gap-4 justify-center items-center">
+                <h1 className="font-bold">
+                  Your payment request is processing...
+                </h1>
+                <p>It take few times to complete</p>
+                <CountdownCircleTimer
+                  onComplete={() => {
+                    handleClose2();
+                  }}
+                  isPlaying
+                  duration={7}
+                  colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+                  colorsTime={[7, 5, 2, 0]}
+                >
+                  {({ remainingTime }) => remainingTime}
+                </CountdownCircleTimer>
+              </CardBody>
+            </Card>
+            {/* <Card className="mx-auto w-full max-w-[24rem]">
               <CardBody className="flex flex-col gap-4">
                 <p className="text-lg">Your payment request is processing...</p>
                 <p className="text-sm">Your product code is {productCode}</p>
@@ -615,7 +636,7 @@ const PaymentDetails = () => {
                   Complete
                 </Button>
               </CardFooter>
-            </Card>
+            </Card> */}
           </Dialog>
         </div>
       </div>
